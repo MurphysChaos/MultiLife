@@ -1,13 +1,3 @@
-<!--
-formmain.ui -- Descriptor data for primary UI form
-
-Multilife
-A Multi-species variant of Conway's Game of Life
-
-Copyright (C) 2009 Joel Murphy, Ba Nguyen
-All rights reserved
-Licensed under the GNU Public License, v2. Full text of license can be found in gpl2.txt.
--->
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>formMain</class>
 <widget class="QMainWindow">
