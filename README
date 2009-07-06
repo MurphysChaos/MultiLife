@@ -1,1 +1,33 @@
-Ba made an update on june 29th 2009
+MultiLife
+Joel Murphy & Ba Nguyen
+
+Copyright (C) 2009 Joel Murphy & Ba Nguyen
+All rights reserved
+
+Multilife is licensed under the GNU Public License, version 2. The text if
+this license can be found in gpl2.txt. Distribution of this this software
+requires this paragraph to remain intact, and the gpl2.txt file to be
+included in the same directory folder as this file.
+
+Last Updated Jul 6, 2009, 10:36
+
+Introdction
+===========
+MultiLife is a multi-species variant of Conway's Game of Life. By
+"multi-species," we mean that there is more than one set of rules governing
+the behavior of each type of life.
+
+Background
+==========
+In Conway's Game of Life, there is a rectangular array of holes, each of
+which is either populated or isn't. A turn-based algorithm (simulating
+"generations") treats each hole as a "center" and examines the 8 surrounding
+holes. The agorithm works as follows:
+
+  * If center is populated:
+    - If adjacent count < 2, center = unpopulated.
+    - If adjacent count > 3, center = unpopulated.
+    - else center = populated.
+  * If center is unpopulated:
+    - If adjacent count = 3, center = populated.
+    - else center = unpopulated.
