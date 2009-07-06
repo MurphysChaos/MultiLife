@@ -9,7 +9,8 @@
   * 
   * Copyright (C) 2009 Joel Murphy, Ba Nguyen
   * All rights reserved
-  * Licensed under the GNU Public License, v2. Full text of license can be found in gpl2.txt.
+  * Licensed under the GNU Public License, v2. Full text of license can be found
+  * in gpl2.txt.
   */
 
 void formMain::fileNew()
@@ -17,24 +18,20 @@ void formMain::fileNew()
 
 }
 
-
 void formMain::fileOpen()
 {
 
 }
-
 
 void formMain::fileSave()
 {
 
 }
 
-
 void formMain::fileSaveAs()
 {
 
 }
-
 
 void formMain::filePrint()
 {
@@ -51,21 +48,23 @@ void formMain::fileExit()
     QApplication::exit( 0 );
 }
 
-
 void formMain::helpIndex()
 {
 
 }
-
 
 void formMain::helpContents()
 {
 
 }
 
-
 void formMain::helpAbout()
 {
 
 }
 
+void formMain::setMouseXY( int x, int y )
+{
+    mouseXValue->setCaption(QString("%d").arg(x));
+    mouseYValue->setCaption(QString("%d").arg(y));
+}

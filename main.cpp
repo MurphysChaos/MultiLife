@@ -9,7 +9,8 @@
   * 
   * Copyright (C) 2009 Joel Murphy, Ba Nguyen
   * All rights reserved
-  * Licensed under the GNU Public License, v2. Full text of license can be found in gpl2.txt.
+  * Licensed under the GNU Public License, v2. Full text of license can be found
+  * in gpl2.txt.
   */
 
 #include <qapplication.h>

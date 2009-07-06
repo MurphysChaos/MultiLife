@@ -3,7 +3,10 @@ LANGUAGE	= C++
 
 CONFIG	+= qt warn_on release
 
-SOURCES	+= main.cpp
+HEADERS	+= paintableframe.h
+
+SOURCES	+= main.cpp \
+	paintableframe.cpp
 
 FORMS	= formmain.ui
 
