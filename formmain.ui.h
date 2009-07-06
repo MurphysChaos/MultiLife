@@ -63,8 +63,18 @@ void formMain::helpAbout()
 
 }
 
+void formMain::setMouseDown()
+{
+    checkLMB->setChecked(true);
+}
+
+void formMain::setMouseUp()
+{
+    checkLMB->setChecked(false);
+}
+
 void formMain::setMouseXY( int x, int y )
 {
-    mouseXValue->setCaption(QString("%d").arg(x));
-    mouseYValue->setCaption(QString("%d").arg(y));
+    mouseXValue->setText(QString("%1").arg(x));
+    mouseYValue->setText(QString("%1").arg(y));
 }

@@ -19,6 +19,7 @@
 #define PAINTABLEFRAME_H
 
 #include <qwidget.h>
+#include <qevent.h>
 
 class PaintableFrame : public QWidget
 {
@@ -26,6 +27,7 @@ class PaintableFrame : public QWidget
 public:
     PaintableFrame( QWidget *parent = 0, const char *name = 0 );
     ~PaintableFrame() {}
+    QPainter *painter;
 protected:
     void mousePressEvent( QMouseEvent *e );
     void mouseReleaseEvent( QMouseEvent *e );
@@ -33,7 +35,7 @@ protected:
 signals:
     void pressed();
     void released();
-    void mousemove(int x, int y);
+    void mousemove( int x, int y );
 };
 
 #endif

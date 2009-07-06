@@ -15,6 +15,19 @@
     <property name="caption">
         <string>MultiLife</string>
     </property>
+    <widget class="PaintableFrame">
+        <property name="name">
+            <cstring>framePaint</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>512</width>
+                <height>384</height>
+            </rect>
+        </property>
+    </widget>
     <widget class="QLineEdit">
         <property name="name">
             <cstring>mouseYValue</cstring>
@@ -74,44 +87,12 @@
             <rect>
                 <x>200</x>
                 <y>395</y>
-                <width>50</width>
+                <width>110</width>
                 <height>20</height>
             </rect>
         </property>
         <property name="text">
-            <string>LMB</string>
-        </property>
-    </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>checkRMB</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>310</x>
-                <y>395</y>
-                <width>50</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>RMB</string>
-        </property>
-    </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>checkMMB</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>255</x>
-                <y>395</y>
-                <width>50</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>MMB</string>
+            <string>Frame Clicked</string>
         </property>
     </widget>
     <widget class="QLineEdit">
@@ -124,19 +105,6 @@
                 <y>390</y>
                 <width>66</width>
                 <height>26</height>
-            </rect>
-        </property>
-    </widget>
-    <widget class="PaintableFrame">
-        <property name="name">
-            <cstring>framePaint</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>512</width>
-                <height>384</height>
             </rect>
         </property>
     </widget>
@@ -180,12 +148,10 @@
             <verstretch>0</verstretch>
         </sizepolicy>
         <pixmap>image0</pixmap>
-        <signal>pressed()</signal>
-        <signal>clicked()</signal>
-        <signal>mousemove()</signal>
+        <signal>mousemove(int,int)</signal>
         <signal>released()</signal>
-        <slot access="public" specifier="">setSize(int x, int y)</slot>
-        <slot access="public" specifier="">setZoom(int n)</slot>
+        <signal>pressed()</signal>
+        <slot access="public" specifier="">slot()</slot>
     </customwidget>
 </customwidgets>
 <actions>
@@ -388,13 +354,29 @@
         <receiver>formMain</receiver>
         <slot>fileNew()</slot>
     </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseXY(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>pressed()</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseDown()</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>released()</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseUp()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>mouseXValue</tabstop>
     <tabstop>mouseYValue</tabstop>
     <tabstop>checkLMB</tabstop>
-    <tabstop>checkMMB</tabstop>
-    <tabstop>checkRMB</tabstop>
 </tabstops>
 <includes>
     <include location="local" impldecl="in implementation">qpainter.h</include>
@@ -416,6 +398,8 @@
     <slot>helpIndex()</slot>
     <slot>helpContents()</slot>
     <slot>helpAbout()</slot>
+    <slot>setMouseDown()</slot>
+    <slot>setMouseUp()</slot>
     <slot>setMouseXY( int x, int y )</slot>
 </slots>
 <pixmapinproject/>

@@ -21,17 +21,21 @@
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
 {
-    QPainter *painter = new QPainter( this );
+    //QPainter *painter = new QPainter( this );
+    painter = new QPainter(this);
+    this->setMouseTracking(true);
 }
 
 void PaintableFrame::mousePressEvent( QMouseEvent * e )
 {
-    emit pressed();
+    if ( e->button() == QMouseEvent::LeftButton )
+	emit pressed();
 }
 
 void PaintableFrame::mouseReleaseEvent( QMouseEvent * e )
 {
-    emit released();
+    if ( e->button() == QMouseEvent::LeftButton )
+	emit released();			
 }
 
 void PaintableFrame::mouseMoveEvent( QMouseEvent * e )
