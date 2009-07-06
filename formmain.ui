@@ -8,66 +8,28 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>512</width>
-            <height>468</height>
+            <width>605</width>
+            <height>458</height>
         </rect>
+    </property>
+    <property name="paletteForegroundColor">
+        <color>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </color>
     </property>
     <property name="caption">
         <string>MultiLife</string>
     </property>
-    <widget class="PaintableFrame">
-        <property name="name">
-            <cstring>framePaint</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>512</width>
-                <height>384</height>
-            </rect>
-        </property>
-    </widget>
-    <widget class="QLineEdit">
-        <property name="name">
-            <cstring>mouseYValue</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>100</x>
-                <y>390</y>
-                <width>66</width>
-                <height>26</height>
-            </rect>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>mouseYLabel</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>170</x>
-                <y>390</y>
-                <width>16</width>
-                <height>26</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>y</string>
-        </property>
-        <property name="buddy" stdset="0">
-            <cstring>lineEdit1_2</cstring>
-        </property>
-    </widget>
     <widget class="QLabel">
         <property name="name">
             <cstring>mouseXLabel</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>75</x>
-                <y>390</y>
+                <x>585</x>
+                <y>0</y>
                 <width>16</width>
                 <height>26</height>
             </rect>
@@ -79,34 +41,98 @@
             <cstring>lineEdit1</cstring>
         </property>
     </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>checkLMB</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>200</x>
-                <y>395</y>
-                <width>110</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Frame Clicked</string>
-        </property>
-    </widget>
     <widget class="QLineEdit">
         <property name="name">
             <cstring>mouseXValue</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>5</x>
-                <y>390</y>
+                <x>515</x>
+                <y>0</y>
                 <width>66</width>
                 <height>26</height>
             </rect>
         </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>mouseYValue</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>515</x>
+                <y>30</y>
+                <width>66</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>mouseYLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>585</x>
+                <y>30</y>
+                <width>16</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>y</string>
+        </property>
+        <property name="buddy" stdset="0">
+            <cstring>lineEdit1_2</cstring>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>checkLMB</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>515</x>
+                <y>65</y>
+                <width>90</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Clicked</string>
+        </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>framePaintBorder</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>511</width>
+                <height>411</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <widget class="PaintableFrame">
+            <property name="name">
+                <cstring>framePaint</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>5</y>
+                    <width>501</width>
+                    <height>401</height>
+                </rect>
+            </property>
+        </widget>
     </widget>
 </widget>
 <menubar>
@@ -135,7 +161,7 @@
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
-        <header location="global">/home/joel/MultiLife/paintableframe.h</header>
+        <header location="global">paintableframe.h</header>
         <sizehint>
             <width>256</width>
             <height>192</height>
@@ -152,6 +178,7 @@
         <signal>released()</signal>
         <signal>pressed()</signal>
         <slot access="public" specifier="">slot()</slot>
+        <property type="Int">zoom</property>
     </customwidget>
 </customwidgets>
 <actions>
@@ -356,12 +383,6 @@
     </connection>
     <connection>
         <sender>framePaint</sender>
-        <signal>mousemove(int,int)</signal>
-        <receiver>formMain</receiver>
-        <slot>setMouseXY(int,int)</slot>
-    </connection>
-    <connection>
-        <sender>framePaint</sender>
         <signal>pressed()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseDown()</slot>
@@ -371,6 +392,12 @@
         <signal>released()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseUp()</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseXY(int,int)</slot>
     </connection>
 </connections>
 <tabstops>
@@ -405,6 +432,6 @@
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>/home/joel/MultiLife/paintableframe.h</includehint>
+    <includehint>paintableframe.h</includehint>
 </includehints>
 </UI>

@@ -23,7 +23,6 @@ PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
 {
     //QPainter *painter = new QPainter( this );
     painter = new QPainter(this);
-    this->setMouseTracking(true);
 }
 
 void PaintableFrame::mousePressEvent( QMouseEvent * e )

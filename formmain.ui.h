@@ -70,6 +70,8 @@ void formMain::setMouseDown()
 
 void formMain::setMouseUp()
 {
+    mouseXValue->setText(QString(""));
+    mouseYValue->setText(QString(""));
     checkLMB->setChecked(false);
 }
 

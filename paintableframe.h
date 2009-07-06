@@ -29,6 +29,7 @@ public:
     ~PaintableFrame() {}
     QPainter *painter;
 protected:
+    //void paintEvent( QPaintEvent *e );
     void mousePressEvent( QMouseEvent *e );
     void mouseReleaseEvent( QMouseEvent *e );
     void mouseMoveEvent( QMouseEvent *e );
