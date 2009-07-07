@@ -6,19 +6,11 @@
     </property>
     <property name="geometry">
         <rect>
-            <x>5</x>
-            <y>8</y>
-            <width>601</width>
+            <x>0</x>
+            <y>0</y>
+            <width>609</width>
             <height>461</height>
         </rect>
-    </property>
-    <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>0</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
     </property>
     <property name="paletteForegroundColor">
         <color>
@@ -136,8 +128,8 @@
                 <rect>
                     <x>5</x>
                     <y>5</y>
-                    <width>501</width>
-                    <height>401</height>
+                    <width>500</width>
+                    <height>400</height>
                 </rect>
             </property>
         </widget>
@@ -169,7 +161,7 @@
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
-        <header location="global">/home/joel/MultiLife/paintableframe.h</header>
+        <header location="local">paintableframe.h</header>
         <sizehint>
             <width>256</width>
             <height>192</height>
@@ -391,6 +383,12 @@
     </connection>
     <connection>
         <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseXY(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
         <signal>pressed()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseDown()</slot>
@@ -400,12 +398,6 @@
         <signal>released()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseUp()</slot>
-    </connection>
-    <connection>
-        <sender>framePaint</sender>
-        <signal>mousemove(int,int)</signal>
-        <receiver>formMain</receiver>
-        <slot>setMouseXY(int,int)</slot>
     </connection>
 </connections>
 <tabstops>
@@ -439,7 +431,4 @@
 </slots>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>/home/joel/MultiLife/paintableframe.h</includehint>
-</includehints>
 </UI>
