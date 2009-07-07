@@ -6,11 +6,19 @@
     </property>
     <property name="geometry">
         <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>605</width>
-            <height>458</height>
+            <x>5</x>
+            <y>8</y>
+            <width>601</width>
+            <height>461</height>
         </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
     </property>
     <property name="paletteForegroundColor">
         <color>
@@ -161,7 +169,7 @@
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
-        <header location="global">paintableframe.h</header>
+        <header location="global">/home/joel/MultiLife/paintableframe.h</header>
         <sizehint>
             <width>256</width>
             <height>192</height>
@@ -432,6 +440,6 @@
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>paintableframe.h</includehint>
+    <includehint>/home/joel/MultiLife/paintableframe.h</includehint>
 </includehints>
 </UI>

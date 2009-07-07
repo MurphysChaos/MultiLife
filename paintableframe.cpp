@@ -21,8 +21,20 @@
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
 {
-    //QPainter *painter = new QPainter( this );
     painter = new QPainter(this);
+}
+
+void PaintableFrame::paintEvent( QPaintEvent * e )
+{
+    QPen gridpen(black, 1);
+    
+    painter->setPen(gridpen);
+    for (int i=0;i<500;i+=5)
+    {
+	painter->drawLine(i,0,i,400);
+	if (i<=400)
+	    painter->drawLine(0,i,500,i);
+    }
 }
 
 void PaintableFrame::mousePressEvent( QMouseEvent * e )
