@@ -6,19 +6,11 @@
     </property>
     <property name="geometry">
         <rect>
-            <x>5</x>
-            <y>8</y>
-            <width>601</width>
+            <x>0</x>
+            <y>0</y>
+            <width>609</width>
             <height>461</height>
         </rect>
-    </property>
-    <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>0</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
     </property>
     <property name="paletteForegroundColor">
         <color>
@@ -136,8 +128,8 @@
                 <rect>
                     <x>5</x>
                     <y>5</y>
-                    <width>501</width>
-                    <height>401</height>
+                    <width>500</width>
+                    <height>400</height>
                 </rect>
             </property>
         </widget>
@@ -169,7 +161,11 @@
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
+<<<<<<< HEAD:formmain.ui
         <header location="global">paintableframe.h</header>
+=======
+        <header location="local">paintableframe.h</header>
+>>>>>>> 4b75bf6c42a12a4ca9555258176e2c12c860f157:formmain.ui
         <sizehint>
             <width>256</width>
             <height>192</height>
@@ -391,6 +387,12 @@
     </connection>
     <connection>
         <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>formMain</receiver>
+        <slot>setMouseXY(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
         <signal>pressed()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseDown()</slot>
@@ -400,12 +402,6 @@
         <signal>released()</signal>
         <receiver>formMain</receiver>
         <slot>setMouseUp()</slot>
-    </connection>
-    <connection>
-        <sender>framePaint</sender>
-        <signal>mousemove(int,int)</signal>
-        <receiver>formMain</receiver>
-        <slot>setMouseXY(int,int)</slot>
     </connection>
 </connections>
 <tabstops>
@@ -439,7 +435,10 @@
 </slots>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>
+<<<<<<< HEAD:formmain.ui
 <includehints>
     <includehint>paintableframe.h</includehint>
 </includehints>
+=======
+>>>>>>> 4b75bf6c42a12a4ca9555258176e2c12c860f157:formmain.ui
 </UI>
