@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>630</width>
-            <height>530</height>
+            <width>124</width>
+            <height>1</height>
         </rect>
     </property>
     <property name="caption">
@@ -154,6 +154,7 @@
         <signal>released()</signal>
         <signal>pressed()</signal>
         <slot access="public" specifier="">slot()</slot>
+        <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
         <property type="Int">zoom</property>
     </customwidget>
 </customwidgets>

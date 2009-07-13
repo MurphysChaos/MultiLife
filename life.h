@@ -13,10 +13,15 @@
   * in gpl-2.0.txt.
   */
 
+#include <critter.h>
+
 class Life
 {
     Life();
     Life(int x, int y);
     ~Life();
 private:
+    Critter* field;	// Array of critters, dimensions defined by constructor.
+    int width;
+    int height;
 }

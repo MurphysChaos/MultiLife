@@ -12,3 +12,8 @@
   * Licensed under the GNU Public License, v2. Full text of license can be found
   * in gpl-2.0.txt.
   */
+
+class Critter
+{
+private:
+}
