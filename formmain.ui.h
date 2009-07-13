@@ -45,6 +45,8 @@ void formMain::closeEvent( QCloseEvent * )
 
 void formMain::fileExit()
 {
+    delete framePaint;
+    framePaint = NULL;
     QApplication::exit( 0 );
 }
 

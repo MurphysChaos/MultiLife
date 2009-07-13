@@ -26,7 +26,7 @@ class PaintableFrame : public QWidget
     Q_OBJECT
 public:
     PaintableFrame( QWidget *parent = 0, const char *name = 0 );
-    ~PaintableFrame() { }
+    ~PaintableFrame();
     QPainter *painter;
 protected:
     void paintEvent( QPaintEvent *e );

@@ -8,7 +8,7 @@ HEADERS	+= paintableframe.h
 SOURCES	+= main.cpp \
 	paintableframe.cpp
 
-FORMS	= formmain.ui
+FORMS	= mainwindow.ui
 
 IMAGES	= images/filenew \
 	images/fileopen \
