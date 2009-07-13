@@ -1,0 +1,206 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>mainWindow</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>mainWindow</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>630</width>
+            <height>530</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>MultiLife</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>false</bool>
+    </property>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>mouseXValue</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>530</x>
+                <y>10</y>
+                <width>66</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>mouseYValue</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>530</x>
+                <y>40</y>
+                <width>66</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>mouseYLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>605</x>
+                <y>40</y>
+                <width>16</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>y</string>
+        </property>
+        <property name="buddy" stdset="0">
+            <cstring>lineEdit1_2</cstring>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>mouseXLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>605</x>
+                <y>10</y>
+                <width>16</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>x</string>
+        </property>
+        <property name="buddy" stdset="0">
+            <cstring>lineEdit1</cstring>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonQuit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>530</x>
+                <y>491</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Quit</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Q</string>
+        </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>framePaintBorder</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>511</width>
+                <height>511</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <widget class="PaintableFrame">
+            <property name="name">
+                <cstring>framePaint</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>5</y>
+                    <width>501</width>
+                    <height>501</height>
+                </rect>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>PaintableFrame</class>
+        <header location="local">paintableframe.h</header>
+        <sizehint>
+            <width>256</width>
+            <height>192</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <signal>mousemove(int,int)</signal>
+        <signal>released()</signal>
+        <signal>pressed()</signal>
+        <slot access="public" specifier="">slot()</slot>
+        <property type="Int">zoom</property>
+    </customwidget>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="XBM.GZ" length="79">789c534e494dcbcc4b554829cdcdad8c2fcf4c29c95030e0524611cd48cd4ccf28010a1797249664262b2467241641a592324b8aa363156c15aab914146aadb90067111b1f</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseXY(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>buttonQuit</sender>
+        <signal>clicked()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>pressed()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseDown()</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>released()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseUp()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
+</includes>
+<slots>
+    <slot>closeEvent( QCloseEvent * )</slot>
+    <slot>fileExit()</slot>
+    <slot>setMouseDown()</slot>
+    <slot>setMouseUp()</slot>
+    <slot>setMouseXY( int x, int y )</slot>
+</slots>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>paintableframe.h</includehint>
+</includehints>
+</UI>

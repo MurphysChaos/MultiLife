@@ -34,7 +34,7 @@ protected:
     void mouseReleaseEvent( QMouseEvent *e );
     void mouseMoveEvent( QMouseEvent *e );
 public slots:
-    //void paint( int x, int y );    
+    void paint( int x, int y, QColor& color );
 signals:
     void pressed();
     void released();

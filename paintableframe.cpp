@@ -30,6 +30,14 @@ PaintableFrame::~PaintableFrame()
     painter = NULL;
 }
 
+void PaintableFrame::paint( int x, int y, QColor& color )
+{
+    QPen gridpen(color, 1);
+    
+    painter->setPen(gridpen);
+    painter->drawRect( x*5+1, y*5+1, 4, 4 );
+}
+
 void PaintableFrame::paintEvent( QPaintEvent * e )
 {
     QPen gridpen(qRgb(85, 85, 85), 1);
