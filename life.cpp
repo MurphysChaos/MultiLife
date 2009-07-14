@@ -13,3 +13,14 @@
   * in gpl-2.0.txt.
   */
 
+Life::Life()
+{
+    Life(100,100);
+}
+
+Life::Life(int x, int y)
+{
+    width = x;
+    height = y;
+    field = new *Critter[width][height];
+}

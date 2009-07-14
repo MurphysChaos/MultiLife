@@ -21,7 +21,7 @@ class Life
     Life(int x, int y);
     ~Life();
 private:
-    Critter* field;	// Array of critters, dimensions defined by constructor.
+    Critter* field[][];	// Array of critters, dimensions defined by constructor.
     int width;
     int height;
 }
