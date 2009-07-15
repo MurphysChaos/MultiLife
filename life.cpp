@@ -13,6 +13,8 @@
   * in gpl-2.0.txt.
   */
 
+#include <life.h>
+
 Life::Life()
 {
     Life(100,100);

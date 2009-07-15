@@ -13,7 +13,17 @@
   * in gpl-2.0.txt.
   */
 
+#ifndef CRITTER_H
+#define CRITTER_H
+
+#include <qcolor.h>
+
 class Critter
 {
+    Critter();
+    Critter( QColor& color );
+    ~Critter();
 private:
 }
+
+#endif

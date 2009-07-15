@@ -13,6 +13,9 @@
   * in gpl-2.0.txt.
   */
 
+#ifndef LIFE_H
+#define LIFE_H
+
 #include <critter.h>
 
 class Life
@@ -20,8 +23,12 @@ class Life
     Life();
     Life(int x, int y);
     ~Life();
+    void advance();
+    void populateCell( int x, int y, Critter& type );
 private:
     Critter* field[][];	// Array of critters, dimensions defined by constructor.
     int width;
     int height;
 }
+
+#endif

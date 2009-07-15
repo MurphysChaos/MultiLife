@@ -14,6 +14,8 @@ SOURCES	+= main.cpp \
 
 FORMS	= mainwindow.ui
 
+IMAGES	= images/PaintableFrame.png
+
 unix {
   UI_DIR = .ui
   MOC_DIR = .moc
