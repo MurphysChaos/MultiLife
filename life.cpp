@@ -24,5 +24,7 @@ Life::Life(int x, int y)
 {
     width = x;
     height = y;
-    field = new *Critter[width][height];
+    field = new *CritterRule[width][height];
 }
+
+

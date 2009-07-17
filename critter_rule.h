@@ -18,14 +18,16 @@
 
 #include <qcolor.h>
 
-class Critter
+class CritterRule
 {
-    Critter();
-    Critter( QColor& color );
-    ~Critter();
+    CritterRule();
+    CritterRule( QColor& color );
+    ~CritterRule();
 private:
-    Critter *next;
-    
+    CritterRule *next;	// Maintains linked list of CritterRules.
+    QColor& color;	// 
+    char *observe;	// 7x7 bit array of whether or not a nearby cell
+                        // is examined for creation / destruction test
 }
 
 #endif

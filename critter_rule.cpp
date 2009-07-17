@@ -1,5 +1,5 @@
 /**
-  * critter_rule.h
+  * critter_rule.cpp
   * Class to handle the behavior of a particular type of critter.
   */
 
@@ -13,19 +13,4 @@
   * in gpl-2.0.txt.
   */
 
-#ifndef CRITTER_H
-#define CRITTER_H
-
-#include <qcolor.h>
-
-class Critter
-{
-    Critter();
-    Critter( QColor& color );
-    ~Critter();
-private:
-    Critter *next;
-    
-}
-
-#endif
+#include <critter_rule.h>
