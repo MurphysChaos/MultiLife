@@ -34,7 +34,9 @@ protected:
     void mouseReleaseEvent( QMouseEvent *e );
     void mouseMoveEvent( QMouseEvent *e );
 public slots:
+    void paint( int x, int y ); // Paints black
     void paint( int x, int y, QColor& color );
+    void erase( int x, int y ); // Unpaints cell
 signals:
     void pressed();
     void released();

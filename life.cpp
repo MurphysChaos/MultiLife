@@ -15,16 +15,16 @@
 
 #include <life.h>
 
-Life::Life()
-{
-    Life(100,100);
-}
-
 Life::Life(int x, int y)
 {
+    int i, j;
     width = x;
     height = y;
-    field = new *CritterRule[width][height];
+    field = new CritterRule *[width*height];
+    
+    for (j=0;j<height;j++)
+        for (i=0;i<width;i++)
+            field[ j*width + i ] = NULL;
 }
 
 

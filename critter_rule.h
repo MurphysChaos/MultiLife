@@ -1,6 +1,6 @@
 /**
   * critter_rule.h
-  * Class to handle the behavior of a particular type of critter.
+  * Class to represent the behavior of a particular type of critter.
   */
 
 /**
@@ -13,21 +13,22 @@
   * in gpl-2.0.txt.
   */
 
-#ifndef CRITTER_H
-#define CRITTER_H
+#ifndef CRITTER_RULE_H
+#define CRITTER_RULE_H
 
 #include <qcolor.h>
 
 class CritterRule
 {
+public:
     CritterRule();
-    CritterRule( QColor& color );
+    CritterRule( QColor color );
     ~CritterRule();
 private:
-    CritterRule *next;	// Maintains linked list of CritterRules.
-    QColor& color;	// 
-    char *observe;	// 7x7 bit array of whether or not a nearby cell
+    CritterRule *next;	// For linked list of CritterRules.
+    QColor& color;	// Color to paint on paintableframe.
+    char observe[];	// 7x7 bit array of whether or not a nearby cell
                         // is examined for creation / destruction test
-}
+};
 
 #endif

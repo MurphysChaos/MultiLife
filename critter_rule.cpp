@@ -1,6 +1,6 @@
 /**
   * critter_rule.cpp
-  * Class to handle the behavior of a particular type of critter.
+  * Class to represent the behavior of a particular type of critter.
   */
 
 /**
@@ -14,3 +14,26 @@
   */
 
 #include <critter_rule.h>
+
+CritterRule::CritterRule()
+{
+    CritterRule( QColor(0,0,0) );
+}
+
+CritterRule::CritterRule( QColor newcolor );
+{
+    next = NULL;
+    color = newcolor;
+    observe = new char[7];
+}
+
+CritterRule::~CritterRule()
+{
+    if (next != NULL) {
+        delete next;
+        next = NULL;
+    }
+    
+    delete color;
+    delete observe;
+}
