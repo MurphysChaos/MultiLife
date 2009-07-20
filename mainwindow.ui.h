@@ -39,11 +39,13 @@ void mainWindow::fileExit()
 
 void mainWindow::setMouseDown( int x, int y )
 {
+    int cellX = x / 8;
+    int cellY = y / 8;
     QColor paintColor( colorActive->paletteBackgroundColor() );
     if (x > 0 && x < 480 && y > 0 && y < 480)
-	emit paintCell( x / 8, y / 8, paintColor );
-    this->lastX = x;
-    this->lastY = y;
+	emit paintCell( cellX, cellY, paintColor );
+    this->lastX = cellX;
+    this->lastY = cellY;
 }
 
 void mainWindow::setMouseUp()
@@ -53,16 +55,18 @@ void mainWindow::setMouseUp()
 
 void mainWindow::setMouseXY( int x, int y )
 {	
+    int cellX = x / 8;
+    int cellY = y / 8;
     // Only perform update if mouse has moved to new display cell
-    if ((this->lastX / 8 != x / 8) && (this->lastY / 8 != y / 8)) 
+    if ((this->lastX != cellX) || (this->lastY != cellY)) 
     {
 	// Temporary code: get fake color.
 	QColor paintColor( colorActive->paletteBackgroundColor() );
 	if (x > 0 && x < 480 && y > 0 && y < 480)
-	    emit paintCell( x / 8, y / 8, paintColor );
+	    emit paintCell( cellX, cellY, paintColor );
     }
-    this->lastX = x;
-    this->lastY = y;
+    this->lastX = cellX;
+    this->lastY = cellY;
 }
 
 void mainWindow::observeCheckGroup_clicked( int buttonClicked )
@@ -73,7 +77,7 @@ void mainWindow::observeCheckGroup_clicked( int buttonClicked )
     } else {
 	targetButton->setPaletteBackgroundColor( checkOff );
     }
-    debugOutput->setText( QString::number( buttonClicked ) );
+    debugOutput->setText( debugOutput->text() += QString::number(buttonClicked) += "\n" );
 }
 
 void mainWindow::showColorPicker()

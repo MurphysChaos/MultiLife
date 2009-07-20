@@ -24,7 +24,7 @@ public:
     CritterType();
     CritterType( QColor& initColor, bool initObserveOthers, bool initPushOut,
 		 int initMinSurvive, int initMaxSurvive, 
-		 int initMinCreate, ini initMaxCreate );
+		 int initMinCreate, int initMaxCreate );
     ~CritterType();
     void setColor( QColor& newcolor );
     void setObserveCell( int x, int y, bool value );

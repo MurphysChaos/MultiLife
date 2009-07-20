@@ -17,21 +17,21 @@
 
 CritterType::CritterType()
 {
-    QColor initColor(black);
+    QColor initColor = QColor::QColor(0,0,0);
     CritterType( initColor, false, false, 2, 3, 3, 3 );
 }
 
 CritterType::CritterType( QColor& initColor, bool initObserveOthers, bool initPushOut,
 		 int initMinSurvive, int initMaxSurvive, 
-		 int initMinCreate, ini initMaxCreate )
+		 int initMinCreate, int initMaxCreate )
 {
     this->observe = new char[7];
     for (int i=0;i<7;i++)
     {
 	this->observe[i] = 0x00;
     }
-    this->color = *initColor;
-    this->observeOthers = initObseveOthers;
+    this->color = initColor;
+    this->observeOthers = initObserveOthers;
     this->pushOut = initPushOut;
     this->minSurvive = initMinSurvive;
     this->maxSurvive = initMaxSurvive;
@@ -93,7 +93,7 @@ void CritterType::setMaxCreate( int value )
     this->maxCreate = value;
 }
 
-void deleteCritterType()
+void CritterType::deleteCritterType()
 {
     this->valid = false;
     delete [] this->observe;

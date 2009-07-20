@@ -31,11 +31,6 @@ Life::Life(int x, int y)
 	    field[ i + j*width ] = -1;
     
     critterType = new CritterType[8];
-    
-    for (i=0;i<8;i++) 
-    {
-	critterType[i] = new CritterType();
-    }
 }
 
 Life::~Life()
@@ -51,9 +46,16 @@ int Life::getCell( int x, int y )
     return field[ x + y * width ];
 }
 
+// returns CritterType in critterType[] at index n
 CritterType& Life::getCritterType( int n )
 {
     return critterType[n];
+}
+
+// returns CritterType at cell (x,y)
+CritterType& Life::getCritterType( int x, int y )
+{
+    return critterType[field[x * y + width]];
 }
 
 void Life::populateCell( int x, int y, int critter )
