@@ -1,0 +1,1777 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>mainWindow</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>mainWindow</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>656</width>
+            <height>501</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>MultiLife</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>false</bool>
+    </property>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>framePaintBorder</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>5</y>
+                <width>492</width>
+                <height>492</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <widget class="PaintableFrame">
+            <property name="name">
+                <cstring>framePaint</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>5</y>
+                    <width>481</width>
+                    <height>481</height>
+                </rect>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>250</y>
+                <width>45</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Create</string>
+        </property>
+        <property name="buddy" stdset="0">
+            <cstring>spinMinCreate</cstring>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>280</y>
+                <width>50</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Survive</string>
+        </property>
+        <property name="buddy" stdset="0">
+            <cstring>spinMinSurvive</cstring>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>checkBox2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>305</y>
+                <width>145</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Allow Push-out</string>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>Allows creation to take place over a populated cell. A cell is normally skipped during the creation phase if it's already populated.</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>labelMinimum</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>565</x>
+                <y>225</y>
+                <width>40</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Min</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>labelMaximum</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>610</x>
+                <y>225</y>
+                <width>40</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Max</string>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMaxSurvive</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>610</x>
+                <y>275</y>
+                <width>40</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMinSurvive</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>565</x>
+                <y>275</y>
+                <width>40</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMinCreate</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>565</x>
+                <y>245</y>
+                <width>40</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMaxCreate</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>610</x>
+                <y>245</y>
+                <width>40</width>
+                <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonQuit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>605</x>
+                <y>470</y>
+                <width>45</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Quit</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Q</string>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>checkBox3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>325</y>
+                <width>145</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Observe Non-Similar</string>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>When off, only cells of identical type are treated as populated for purposes of survival.</string>
+        </property>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>colorGroupBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>520</x>
+                <y>5</y>
+                <width>115</width>
+                <height>95</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>GroupBoxPanel</enum>
+        </property>
+        <property name="title">
+            <string></string>
+        </property>
+        <property name="exclusive">
+            <bool>true</bool>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>Select a life type. Each type can have unique color and set rules.</string>
+        </property>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType5</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>35</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>5</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType6</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>60</x>
+                    <y>35</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>6</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType7</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>85</x>
+                    <y>35</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>7</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>colorActive</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>61</y>
+                    <width>96</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="default">
+                <bool>true</bool>
+            </property>
+            <property name="flat">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType0</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>TabFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>0</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>10</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>1</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>60</x>
+                    <y>10</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>2</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>85</x>
+                    <y>10</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>3</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>critterType4</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>35</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>NoFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>4</number>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>observeCheckGroup</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>520</x>
+                <y>105</y>
+                <width>115</width>
+                <height>115</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string></string>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>Adjacent cells to examine for creation and survival in relation the the a given center [C] cell.</string>
+        </property>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck8</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>8</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck9</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>9</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck11</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>11</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck15</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>15</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck16</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>16</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck17</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>17</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck20</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>20</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck22</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>22</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck23</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>23</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck27</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>27</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck29</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>29</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck31</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>31</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck32</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>32</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck33</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>33</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck36</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>36</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck37</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>37</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck39</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>39</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck41</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>41</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck43</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>43</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck44</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>44</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck45</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>45</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck48</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>48</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheckCenter</cstring>
+            </property>
+            <property name="enabled">
+                <bool>false</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>C</string>
+            </property>
+            <property name="flat">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>25</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck13</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>13</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck47</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>47</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck40</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>40</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck34</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>34</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck26</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>26</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck24</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>24</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck19</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>19</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck12</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>12</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck10</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>10</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>2</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>3</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck4</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>4</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck5</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>65</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>5</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck6</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>80</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>6</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck7</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>7</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck14</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>20</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>14</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck21</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>21</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck28</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>50</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>28</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck35</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>35</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck42</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>42</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck46</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>46</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>5</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>false</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>1</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck30</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>65</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>30</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck38</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>35</x>
+                    <y>80</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>38</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck49</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>95</x>
+                    <y>95</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>49</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
+                <cstring>observeCheck18</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>35</y>
+                    <width>16</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>18</number>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>PaintableFrame</class>
+        <header location="local">paintableframe.h</header>
+        <sizehint>
+            <width>500</width>
+            <height>400</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <signal>mousemove(int,int)</signal>
+        <signal>released()</signal>
+        <signal>pressed()</signal>
+        <signal>pressed(int,int)</signal>
+        <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
+        <slot access="public" specifier="">paint(int,int)</slot>
+        <slot access="public" specifier="">erase(int,int)</slot>
+        <property type="Int">zoom</property>
+    </customwidget>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="XBM.GZ" length="79">789c534e494dcbcc4b554829cdcdad8c2fcf4c29c95030e0524611cd48cd4ccf28010a1797249664262b2467241641a592324b8aa363156c15aab914146aadb90067111b1f</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>mousemove(int,int)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseXY(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>buttonQuit</sender>
+        <signal>clicked()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>pressed(int,int)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseDown(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>released()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>setMouseUp()</slot>
+    </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>paintCell( int, int, QColor&amp; )</signal>
+        <receiver>framePaint</receiver>
+        <slot>paint(int,int,QColor&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>observeCheckGroup</sender>
+        <signal>clicked(int)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>observeCheckGroup_clicked(int)</slot>
+    </connection>
+    <connection>
+        <sender>colorActive</sender>
+        <signal>clicked()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>showColorPicker()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>critterType0</tabstop>
+    <tabstop>critterType1</tabstop>
+    <tabstop>critterType2</tabstop>
+    <tabstop>critterType3</tabstop>
+    <tabstop>critterType4</tabstop>
+    <tabstop>critterType5</tabstop>
+    <tabstop>critterType6</tabstop>
+    <tabstop>critterType7</tabstop>
+    <tabstop>observeCheck1</tabstop>
+    <tabstop>observeCheck2</tabstop>
+    <tabstop>observeCheck3</tabstop>
+    <tabstop>observeCheck4</tabstop>
+    <tabstop>observeCheck5</tabstop>
+    <tabstop>observeCheck6</tabstop>
+    <tabstop>observeCheck7</tabstop>
+    <tabstop>observeCheck8</tabstop>
+    <tabstop>observeCheck9</tabstop>
+    <tabstop>observeCheck10</tabstop>
+    <tabstop>observeCheck11</tabstop>
+    <tabstop>observeCheck12</tabstop>
+    <tabstop>observeCheck13</tabstop>
+    <tabstop>observeCheck14</tabstop>
+    <tabstop>observeCheck15</tabstop>
+    <tabstop>observeCheck16</tabstop>
+    <tabstop>observeCheck17</tabstop>
+    <tabstop>observeCheck18</tabstop>
+    <tabstop>observeCheck19</tabstop>
+    <tabstop>observeCheck20</tabstop>
+    <tabstop>observeCheck21</tabstop>
+    <tabstop>observeCheck22</tabstop>
+    <tabstop>observeCheck23</tabstop>
+    <tabstop>observeCheck24</tabstop>
+    <tabstop>observeCheck26</tabstop>
+    <tabstop>observeCheck27</tabstop>
+    <tabstop>observeCheck28</tabstop>
+    <tabstop>observeCheck29</tabstop>
+    <tabstop>observeCheck30</tabstop>
+    <tabstop>observeCheck31</tabstop>
+    <tabstop>observeCheck32</tabstop>
+    <tabstop>observeCheck33</tabstop>
+    <tabstop>observeCheck34</tabstop>
+    <tabstop>observeCheck35</tabstop>
+    <tabstop>observeCheck36</tabstop>
+    <tabstop>observeCheck37</tabstop>
+    <tabstop>observeCheck38</tabstop>
+    <tabstop>observeCheck39</tabstop>
+    <tabstop>observeCheck40</tabstop>
+    <tabstop>observeCheck41</tabstop>
+    <tabstop>observeCheck42</tabstop>
+    <tabstop>observeCheck43</tabstop>
+    <tabstop>observeCheck44</tabstop>
+    <tabstop>observeCheck45</tabstop>
+    <tabstop>observeCheck46</tabstop>
+    <tabstop>observeCheck47</tabstop>
+    <tabstop>observeCheck48</tabstop>
+    <tabstop>observeCheck49</tabstop>
+    <tabstop>spinMinCreate</tabstop>
+    <tabstop>spinMaxCreate</tabstop>
+    <tabstop>spinMinSurvive</tabstop>
+    <tabstop>spinMaxSurvive</tabstop>
+    <tabstop>buttonQuit</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">life.h</include>
+    <include location="local" impldecl="in declaration">qcolordialog.h</include>
+    <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">QColor checkOff;</variable>
+    <variable access="private">QColor checkOn;</variable>
+    <variable access="private">Life* engine;</variable>
+    <variable access="private">CritterType* selectedCritterType;</variable>
+    <variable access="private">int lastX;</variable>
+    <variable access="private">int lastY;</variable>
+</variables>
+<signals>
+    <signal>paintCell( int, int, QColor&amp; )</signal>
+</signals>
+<slots>
+    <slot>closeEvent( QCloseEvent * )</slot>
+    <slot>fileExit()</slot>
+    <slot>setMouseDown( int x, int y )</slot>
+    <slot>setMouseUp()</slot>
+    <slot>setMouseXY( int x, int y )</slot>
+    <slot>observeCheckGroup_clicked( int buttonClicked )</slot>
+    <slot>showColorPicker()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>paintableframe.h</includehint>
+</includehints>
+</UI>

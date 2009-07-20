@@ -1,1 +1,80 @@
-Ba made an update on june 29th 2009
+MultiLife
+Joel Murphy & Ba Nguyen
+
+Copyright (C) 2009 Joel Murphy & Ba Nguyen
+All rights reserved
+
+Multilife is licensed under the GNU General Public License, version 2. The
+text of this license can be found in gpl-2.0.txt. Distribution of this this 
+software requires this paragraph to remain intact, and the gpl2.txt file to 
+be included in the same directory folder as this README file.
+
+Introduction
+============
+MultiLife is a "zero-player" simulation based on Conway's Game of Life
+(Life). In MultiLife, the user uses a play field to create an initial
+condition (generation 0) and an algorithm iteratively generates all future
+generations. This multi-species variant allows for different types of life.
+A type of life is defined as a particular set of rules governing
+generational growth patterns.
+
+Background
+==========
+Life's algorithm is rather simple. A rectangular array of "cells" are either
+on (populated) or off (vacant). A turn-based algorithm examines each
+previous "generation" and computes the current generation based on that
+information. Unpopulated cells become populated when exactly three adjacent
+cells were populated. Populated cells become unpopulated when the count of
+adjacent cells is less than two or greater than three.
+
+The algorithm of Life, which we will call the "base algorithm," is as
+follows:
+
+    define field           // array of cells
+    define cell            // current cell
+    define cell.populated  // true if "on"
+    define cell.adjacent   // ..... Count of the 'a' cells that are 
+                           // .aaa. populated surrounding 'C'. Cells that 
+                           // .aCa. do not exist (are on the border of the 
+                           // .aaa. field) are considered unpopulated.
+                           // .....
+
+    do
+      foreach cell in field
+        if cell.populated = true
+          if cell.adjacent < 2 or cell.adjacent > 3
+            cell.populated = false
+          fi
+        else
+          if cell.adjacent = 3
+            cell.populated = true
+          fi
+        fi
+      rof
+    od // endless loop
+
+MultiLife
+=========
+This project differs from Life by adding different algorithms to determine
+if a cell is populated, allowing for multiply types of "being." Each being
+type would have its own rules for generation and survival. For example, one
+type could check a cross pattern for survival while another could check an X
+pattern:
+
+    ..a.. a...a
+    ..a.. .a.a.
+    aaCaa ..C..
+    ..a.. .a.a.
+    ..a.. a...a
+
+Being types will be organized by lists according to their type, the head of
+each list being a double pointer, also referencing the next type of being. 
+This has the effect of introducing a priority system to the list of life 
+types, causing the tail of the type list to have highest priority ("nice 
+guys finish last").
+
+A fairly significant change to the base algorithm will be necessary to
+accomodate multible being types. To handle this, the algorithm will traverse
+a given being type, marking the cells it affects and is affected by. These
+marks are tallied, compared to the cell population, and the next generation
+is created from this data.
