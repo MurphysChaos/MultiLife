@@ -3,23 +3,18 @@ LANGUAGE	= C++
 
 CONFIG	+= qt warn_on release
 
-HEADERS	+= paintableframe.h
+HEADERS	+= paintableframe.h \
+	life.h \
+	critter.h
 
 SOURCES	+= main.cpp \
-	paintableframe.cpp
+	paintableframe.cpp \
+	life.cpp \
+	critter.cpp
 
-FORMS	= formmain.ui
+FORMS	= mainwindow.ui
 
-IMAGES	= images/filenew \
-	images/fileopen \
-	images/filesave \
-	images/print \
-	images/undo \
-	images/redo \
-	images/editcut \
-	images/editcopy \
-	images/editpaste \
-	images/searchfind
+IMAGES	= images/PaintableFrame.png
 
 unix {
   UI_DIR = .ui

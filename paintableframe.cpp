@@ -24,16 +24,29 @@ PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     painter = new QPainter(this);
 }
 
-void PaintableFrame::paintEvent( QPaintEvent * e )
+PaintableFrame::~PaintableFrame()
 {
-    QPen gridpen(black, 1);
+    delete painter;
+    painter = NULL;
+}
+
+void PaintableFrame::paint( int x, int y, QColor& color )
+{
+    QPen gridpen(color, 1);
     
     painter->setPen(gridpen);
-    for (int i=0;i<500;i+=5)
+    painter->drawRect( x*5+1, y*5+1, 4, 4 );
+}
+
+void PaintableFrame::paintEvent( QPaintEvent * e )
+{
+    QPen gridpen(qRgb(85, 85, 85), 1);
+    
+    painter->setPen(gridpen);
+    for (int i=0;i<501;i+=5)
     {
-	painter->drawLine(i,0,i,400);
-	if (i<=400)
-	    painter->drawLine(0,i,500,i);
+	painter->drawLine(i,0,i,501);
+	painter->drawLine(0,i,501,i);
     }
 }
 

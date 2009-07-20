@@ -14,12 +14,12 @@
   */
 
 #include <qapplication.h>
-#include "formmain.h"
+#include "mainwindow.h"
 
 int main( int argc, char ** argv )
 {
     QApplication a( argc, argv );
-    formMain w;
+    mainWindow w;
     w.show();
     a.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );
     return a.exec();
