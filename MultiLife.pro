@@ -3,10 +3,14 @@ LANGUAGE	= C++
 
 CONFIG	+= qt warn_on release
 
-HEADERS	+= paintableframe.h
+HEADERS	+= paintableframe.h \
+	life.h \
+	critter_type.h
 
 SOURCES	+= main.cpp \
-	paintableframe.cpp
+	paintableframe.cpp \
+	life.cpp \
+	critter_type.cpp
 
 FORMS	= mainwindow.ui
 

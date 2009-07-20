@@ -1,5 +1,5 @@
 /**
-  * critter_rule.cpp
+  * critter_type.cpp
   * Class to represent the behavior of a particular type of critter.
   */
 
@@ -13,27 +13,14 @@
   * in gpl-2.0.txt.
   */
 
-#include <critter_rule.h>
+#include <critter_type.h>
 
-CritterRule::CritterRule()
+CritterType::CritterType()
 {
-    CritterRule( QColor(0,0,0) );
-}
-
-CritterRule::CritterRule( QColor newcolor );
-{
-    next = NULL;
-    color = newcolor;
     observe = new char[7];
 }
 
-CritterRule::~CritterRule()
+CritterType::~CritterType()
 {
-    if (next != NULL) {
-        delete next;
-        next = NULL;
-    }
-    
-    delete color;
-    delete observe;
+    delete [] observe;
 }

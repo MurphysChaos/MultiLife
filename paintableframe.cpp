@@ -16,8 +16,6 @@
   */
 
 #include "paintableframe.h"
-#include <qpainter.h>
-#include <qdrawutil.h>
 
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
@@ -59,7 +57,7 @@ void PaintableFrame::paintEvent( QPaintEvent * e )
 void PaintableFrame::mousePressEvent( QMouseEvent * e )
 {
     if ( e->button() == QMouseEvent::LeftButton )
-	emit pressed();
+	emit pressed( e->x(), e->y() );
 }
 
 void PaintableFrame::mouseReleaseEvent( QMouseEvent * e )

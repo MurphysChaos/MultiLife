@@ -20,11 +20,25 @@ Life::Life(int x, int y)
     int i, j;
     width = x;
     height = y;
-    field = new CritterRule *[width*height];
+    
+    /** One-dimensional array is necessary because of limitations in C++.
+      A cell at coordinates (x,y) can be referenced with field[ x + y*width ]; where
+      width is a private field in the Life object. */
+    field = new int[width*height]; 
     
     for (j=0;j<height;j++)
-        for (i=0;i<width;i++)
-            field[ j*width + i ] = NULL;
+	for (i=0;i<width;i++)
+	    field[ i + j*width ] = 0;
+    
+    critterType = new CritterType[8];
 }
 
+Life::~Life(
+	)
+{
+    if (field != NULL) {
+	delete [] field;
+	field = NULL;
+    }
+}
 
