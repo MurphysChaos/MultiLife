@@ -20,6 +20,8 @@
 
 #include <qwidget.h>
 #include <qevent.h>
+#include <qpainter.h>
+#include <qdrawutil.h>
 
 class PaintableFrame : public QWidget
 {
@@ -34,9 +36,12 @@ protected:
     void mouseReleaseEvent( QMouseEvent *e );
     void mouseMoveEvent( QMouseEvent *e );
 public slots:
+    void paint( int x, int y ); // Paints black
     void paint( int x, int y, QColor& color );
+    void erase( int x, int y ); // Unpaints cell
 signals:
     void pressed();
+    void pressed( int x, int y );
     void released();
     void mousemove( int x, int y );
 };

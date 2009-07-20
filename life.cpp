@@ -15,14 +15,55 @@
 
 #include <life.h>
 
-Life::Life()
-{
-    Life(100,100);
-}
-
 Life::Life(int x, int y)
 {
+    int i, j;
     width = x;
     height = y;
-    field = new *Critter[width][height];
+    
+    /** One-dimensional array is necessary because of limitations in C++.
+      A cell at coordinates (x,y) can be referenced with field[ x + y*width ]; where
+      width is a private field in the Life object. */
+    field = new int[width*height]; 
+    
+    for (j=0;j<height;j++)
+	for (i=0;i<width;i++)
+	    field[ i + j*width ] = -1;
+    
+    critterType = new CritterType[8];
+    
+    for (i=0;i<8;i++) 
+    {
+	critterType[i] = new CritterType();
+    }
+}
+
+Life::~Life()
+{
+    if (field != NULL) {
+	delete [] field;
+	field = NULL;
+    }
+}
+
+int Life::getCell( int x, int y ) 
+{
+    return field[ x + y * width ];
+}
+
+CritterType& Life::getCritterType( int n )
+{
+    return critterType[n];
+}
+
+void Life::populateCell( int x, int y, int critter )
+{
+    // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of critter is
+    // dependent upon selected button in colorGroupBox.
+    field[ x + y * width ] = critter;
+}
+
+void Life::unpopulateCell( int x, int y )
+{
+    field[ x + y * width ] = -1;
 }

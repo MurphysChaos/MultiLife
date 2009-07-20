@@ -16,19 +16,25 @@
 #ifndef LIFE_H
 #define LIFE_H
 
-#include <critter.h>
+#include <qobject.h>
+#include <critter_type.h>
 
-class Life
+class Life : public QObject
 {
-    Life();
+    Q_OBJECT
+public:
     Life(int x, int y);
     ~Life();
-    void advance();
-    void populateCell( int x, int y, Critter& type );
+    void nextGeneration();		// Replaces contents of field with next generation
+    int getCell(int x, int y);		// Examines a given cell, returns the index to critterType[]
+    CritterType& getCritterType( int n ); // Used so mainWindow can read / manipulate contents of a CritterType
+    void populateCell( int x, int y, int critter );
+    void unpopulateCell( int x, int y );
 private:
-    Critter* field[][];	// Array of critters, dimensions defined by constructor.
-    int width;
-    int height;
-}
+    int* field;			// Array of indexes to critterType[]
+    CritterType** critterType;	// Array of rule sets
+    int width;			// Width of array
+    int height;			// Height of array
+};
 
 #endif

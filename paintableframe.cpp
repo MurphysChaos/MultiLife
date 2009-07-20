@@ -16,7 +16,6 @@
   */
 
 #include "paintableframe.h"
-#include <qpainter.h>
 
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
@@ -30,30 +29,35 @@ PaintableFrame::~PaintableFrame()
     painter = NULL;
 }
 
+void PaintableFrame::paint( int x, int y )
+{
+    QBrush brush( black );
+    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), false, 1, &brush );
+}
+
 void PaintableFrame::paint( int x, int y, QColor& color )
 {
-    QPen gridpen(color, 1);
-    
-    painter->setPen(gridpen);
-    painter->drawRect( x*5+1, y*5+1, 4, 4 );
+    QBrush brush( color );
+    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), false, 1, &brush );
+}
+
+void PaintableFrame::erase( int x, int y )
+{
+    QBrush brush( colorGroup().midlight() );
+    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), true, 1, &brush );
 }
 
 void PaintableFrame::paintEvent( QPaintEvent * e )
 {
-    QPen gridpen(qRgb(85, 85, 85), 1);
-    
-    painter->setPen(gridpen);
-    for (int i=0;i<501;i+=5)
-    {
-	painter->drawLine(i,0,i,501);
-	painter->drawLine(0,i,501,i);
-    }
+    for (int j=0;j<480;j+=8)
+        for (int i=0;i<480;i+=8)
+            qDrawShadePanel( painter, i, j, 8, 8, colorGroup(), true, 1, 0 );
 }
 
 void PaintableFrame::mousePressEvent( QMouseEvent * e )
 {
     if ( e->button() == QMouseEvent::LeftButton )
-	emit pressed();
+	emit pressed( e->x(), e->y() );
 }
 
 void PaintableFrame::mouseReleaseEvent( QMouseEvent * e )
