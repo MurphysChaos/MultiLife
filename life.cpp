@@ -28,13 +28,17 @@ Life::Life(int x, int y)
     
     for (j=0;j<height;j++)
 	for (i=0;i<width;i++)
-	    field[ i + j*width ] = 0;
+	    field[ i + j*width ] = -1;
     
     critterType = new CritterType[8];
+    
+    for (i=0;i<8;i++) 
+    {
+	critterType[i] = new CritterType();
+    }
 }
 
-Life::~Life(
-	)
+Life::~Life()
 {
     if (field != NULL) {
 	delete [] field;
@@ -42,3 +46,24 @@ Life::~Life(
     }
 }
 
+int Life::getCell( int x, int y ) 
+{
+    return field[ x + y * width ];
+}
+
+CritterType& Life::getCritterType( int n )
+{
+    return critterType[n];
+}
+
+void Life::populateCell( int x, int y, int critter )
+{
+    // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of critter is
+    // dependent upon selected button in colorGroupBox.
+    field[ x + y * width ] = critter;
+}
+
+void Life::unpopulateCell( int x, int y )
+{
+    field[ x + y * width ] = -1;
+}

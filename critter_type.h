@@ -22,6 +22,9 @@ class CritterType
 {
 public:
     CritterType();
+    CritterType( QColor& initColor, bool initObserveOthers, bool initPushOut,
+		 int initMinSurvive, int initMaxSurvive, 
+		 int initMinCreate, ini initMaxCreate );
     ~CritterType();
     void setColor( QColor& newcolor );
     void setObserveCell( int x, int y, bool value );
@@ -31,15 +34,17 @@ public:
     void setMaxSurvive( int value );
     void setMinCreate( int value );
     void setMaxCreate( int value );
+    void deleteCritterType();
     QColor& getColor();
     bool getObserve( int x, int y );
     bool getObserveOthers();
     bool getPushOut();
-    int getMinSurvive;
-    int getMaxSurvive;
-    int getMinCreate;
-    int getMaxCreate;
+    int getMinSurvive();
+    int getMaxSurvive();
+    int getMinCreate();
+    int getMaxCreate();
 private:
+    bool valid;
     QColor color;		// Color to paint on paintableframe.
     char *observe;		// 7x7 bit array for examining adjacent cells.
     bool observeOthers;	// TRUE := Use non-similar life for survival check, FALSE := use only this type

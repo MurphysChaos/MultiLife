@@ -17,19 +17,38 @@
 
 CritterType::CritterType()
 {
-    observe = new char[7];
-    for (int i=0;i++;i<7)
-	observe[i] = 0;
+    QColor initColor(black);
+    CritterType( initColor, false, false, 2, 3, 3, 3 );
+}
+
+CritterType::CritterType( QColor& initColor, bool initObserveOthers, bool initPushOut,
+		 int initMinSurvive, int initMaxSurvive, 
+		 int initMinCreate, ini initMaxCreate )
+{
+    this->observe = new char[7];
+    for (int i=0;i<7;i++)
+    {
+	this->observe[i] = 0x00;
+    }
+    this->color = *initColor;
+    this->observeOthers = initObseveOthers;
+    this->pushOut = initPushOut;
+    this->minSurvive = initMinSurvive;
+    this->maxSurvive = initMaxSurvive;
+    this->minCreate = initMinCreate;
+    this->maxCreate = initMaxCreate;
+    this->valid = true;
 }
 
 CritterType::~CritterType()
 {
-    delete [] observe;
+    delete [] this->observe;
+    this->observe = NULL;
 }
 
-void setColor( QColor& newColor )
+void CritterType::setColor( QColor& newColor )
 {
-    this.color = newColor;
+    this->color = newColor;
 }
 
 // Usage: setObserveCell( [-3,3], [-3,3], [true,false] );
@@ -37,39 +56,86 @@ void setColor( QColor& newColor )
 // y := vertical offset from center (-3 to 3)
 // value := true to observe, false to ignore
 // Note: offset 0,0 is not used by the simulation
-void setObserveCell( int x, int y, bool value )
+void CritterType::setObserveCell( int x, int y, bool value )
 {
     char change = 2 ^ (x + 3);
     char remain = 0xff - change;
-    this.observe[y] = (observe[y] & remain) + (change & ( value ? 0xff : 0x00 ) );
+    this->observe[y] = (observe[y] & remain) + (change & ( value ? 0xff : 0x00 ) );
 }
 
-void setObserveOthers( bool value )
+void CritterType::setObserveOthers( bool value )
 {
-    this.observeOthers = value;
+    this->observeOthers = value;
 }
 
-void setPushOut( bool value )
+void CritterType::setPushOut( bool value )
 {
-    this.pushOut = value;
+    this->pushOut = value;
 }
 
-void setMinSurvive( int value )
+void CritterType::setMinSurvive( int value )
 {
-    this.minSurvive = value;
+    this->minSurvive = value;
 }
 
-void setMaxSurvive( int value )
+void CritterType::setMaxSurvive( int value )
 {
-    this.maxSurvive = value;
+    this->maxSurvive = value;
 }
 
-void setMinCreate( int value )
+void CritterType::setMinCreate( int value )
 {
-    this.minCreate = value;
+    this->minCreate = value;
 }
 
-void setMaxCreate( int value )
+void CritterType::setMaxCreate( int value )
 {
-    this.maxCreate = value;
+    this->maxCreate = value;
+}
+
+void deleteCritterType()
+{
+    this->valid = false;
+    delete [] this->observe;
+}
+
+QColor& CritterType::getColor()
+{
+    return this->color;
+}
+
+bool CritterType::getObserve( int x, int y )
+{
+    int n = this->observe[y] & (2 ^ (x + 3));
+    return n ? true : false;
+}
+
+bool CritterType::getObserveOthers()
+{
+    return this->observeOthers;
+}
+
+bool CritterType::getPushOut() 
+{
+    return this->pushOut; 
+}
+
+int CritterType::getMinSurvive()
+{
+    return this->minSurvive; 
+}
+
+int CritterType::getMaxSurvive() 
+{ 
+    return this->maxSurvive;
+}
+
+int CritterType::getMinCreate() 
+{
+    return this->minCreate; 
+}
+
+int CritterType::getMaxCreate() 
+{
+    return this->maxCreate; 
 }

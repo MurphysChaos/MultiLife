@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>656</width>
-            <height>501</height>
+            <height>587</height>
         </rect>
     </property>
     <property name="caption">
@@ -1287,46 +1287,6 @@
             </rect>
         </property>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>buttonQuit</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>605</x>
-                <y>470</y>
-                <width>45</width>
-                <height>25</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Quit</string>
-        </property>
-        <property name="accel">
-            <string>Alt+Q</string>
-        </property>
-    </widget>
-    <widget class="QLineEdit">
-        <property name="name">
-            <cstring>debugOutput</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>645</width>
-                <height>75</height>
-            </rect>
-        </property>
-        <property name="sizePolicy">
-            <sizepolicy>
-                <hsizetype>0</hsizetype>
-                <vsizetype>0</vsizetype>
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-            </sizepolicy>
-        </property>
-    </widget>
     <widget class="QSpinBox">
         <property name="name">
             <cstring>spinMinCreate</cstring>
@@ -1350,6 +1310,19 @@
                 <y>245</y>
                 <width>40</width>
                 <height>26</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
             </rect>
         </property>
     </widget>
@@ -1610,6 +1583,25 @@
             </property>
         </widget>
     </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonQuit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>605</x>
+                <y>470</y>
+                <width>45</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Quit</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Q</string>
+        </property>
+    </widget>
 </widget>
 <customwidgets>
     <customwidget>
@@ -1755,10 +1747,12 @@
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
-    <variable access="private">CritterType* selectedCritterType;</variable>
-    <variable access="private">Life* engine;</variable>
-    <variable access="private">QColor checkOn;</variable>
     <variable access="private">QColor checkOff;</variable>
+    <variable access="private">QColor checkOn;</variable>
+    <variable access="private">Life* engine;</variable>
+    <variable access="private">CritterType* selectedCritterType;</variable>
+    <variable access="private">int lastX;</variable>
+    <variable access="private">int lastY;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>

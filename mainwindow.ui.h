@@ -19,6 +19,7 @@
 void mainWindow::init()
 {
     this->engine = new Life(80, 80);
+    this->selectedCritterType = NULL;
     this->checkOn = green;
     this->checkOff = observeCheck1->paletteBackgroundColor();
 }
@@ -41,6 +42,8 @@ void mainWindow::setMouseDown( int x, int y )
     QColor paintColor( colorActive->paletteBackgroundColor() );
     if (x > 0 && x < 480 && y > 0 && y < 480)
 	emit paintCell( x / 8, y / 8, paintColor );
+    this->lastX = x;
+    this->lastY = y;
 }
 
 void mainWindow::setMouseUp()
@@ -50,9 +53,16 @@ void mainWindow::setMouseUp()
 
 void mainWindow::setMouseXY( int x, int y )
 {	
-    QColor paintColor( colorActive->paletteBackgroundColor() );
-    if (x > 0 && x < 480 && y > 0 && y < 480)
-	emit paintCell( x / 8, y / 8, paintColor );
+    // Only perform update if mouse has moved to new display cell
+    if ((this->lastX / 8 != x / 8) && (this->lastY / 8 != y / 8)) 
+    {
+	// Temporary code: get fake color.
+	QColor paintColor( colorActive->paletteBackgroundColor() );
+	if (x > 0 && x < 480 && y > 0 && y < 480)
+	    emit paintCell( x / 8, y / 8, paintColor );
+    }
+    this->lastX = x;
+    this->lastY = y;
 }
 
 void mainWindow::observeCheckGroup_clicked( int buttonClicked )
@@ -68,6 +78,7 @@ void mainWindow::observeCheckGroup_clicked( int buttonClicked )
 
 void mainWindow::showColorPicker()
 {
+    // Need to update color on both type button (observeCheckGroup) and color box (colorActive).
     QColor newColor = QColorDialog::getColor();
     colorActive->setPaletteBackgroundColor( newColor );
     colorGroupBox->selected()->setPaletteBackgroundColor( newColor );
