@@ -43,6 +43,7 @@ public:
     int getMaxSurvive();
     int getMinCreate();
     int getMaxCreate();
+    bool isValid();
 private:
     bool valid;
     QColor color;		// Color to paint on paintableframe.

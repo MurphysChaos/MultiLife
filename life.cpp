@@ -17,20 +17,28 @@
 
 Life::Life(int x, int y)
 {
-    int i, j;
+    int i = 0, j = 0;
     width = x;
     height = y;
     
     /** One-dimensional array is necessary because of limitations in C++.
       A cell at coordinates (x,y) can be referenced with field[ x + y*width ]; where
       width is a private field in the Life object. */
-    field = new int[width*height]; 
+    field = new int[width*height];     
+    for (i=0;i<(width*height);i++)
+	field[ i + j*width ] = -1;
     
-    for (j=0;j<height;j++)
-	for (i=0;i<width;i++)
-	    field[ i + j*width ] = -1;
-    
-    critterType = new CritterType[8];
+    critterType = new CritterType *[8];
+    influence = new int *[8];
+    for (i=0;i<8;i++)
+    {
+	critterType[i] = new CritterType();
+	influence[i] = new int[width*height];
+	for (j=0;j<(width*height);j++)
+	{
+	    (influence[i])[j] = 0;
+	}
+    }
 }
 
 Life::~Life()
@@ -49,23 +57,59 @@ int Life::getCell( int x, int y )
 // returns CritterType in critterType[] at index n
 CritterType& Life::getCritterType( int n )
 {
-    return critterType[n];
+    return *critterType[n];
 }
 
 // returns CritterType at cell (x,y)
 CritterType& Life::getCritterType( int x, int y )
 {
-    return critterType[field[x * y + width]];
+    return *critterType[field[x * y + width]];
 }
 
-void Life::populateCell( int x, int y, int critter )
+void Life::populateCell( int x, int y, int index )
 {
+    int offX, offY, lookX, lookY;
     // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of critter is
     // dependent upon selected button in colorGroupBox.
-    field[ x + y * width ] = critter;
+    field[ x + y * width ] = index;
+    
+    // Manipulate influence data
+    for (offY=-3;offY<=3;offY++)
+    {
+	for (offX=-3;offX<=3;offX++)
+	{
+	    // Avoid accessing invalid array elements
+	    lookX = x + offX;
+	    lookY = y + offY;
+	    if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
+	    {
+		influence[index][ lookX + lookY * width ] += 
+			critterType[index]->getObserve( offX, offY ) ?
+			1 : 0;
+	    }
+	}
+    }
 }
 
 void Life::unpopulateCell( int x, int y )
 {
     field[ x + y * width ] = -1;
+}
+
+void Life::nextGeneration()
+{
+    int x, y, ox, oy, index, count; // ox := X offset, oy := Y offset
+    CritterType* centerCell = NULL;
+    CritterType* compareType = NULL;
+    int newField[ height * width ];
+    
+    for (y=0;y<height;y++)
+    {
+	for (x=0;x<width;x++)
+	{
+	    for (index=0;index<8;index++)
+	    {
+	    }
+	}
+    }
 }

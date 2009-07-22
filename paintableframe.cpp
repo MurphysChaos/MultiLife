@@ -63,7 +63,7 @@ void PaintableFrame::mousePressEvent( QMouseEvent * e )
 void PaintableFrame::mouseReleaseEvent( QMouseEvent * e )
 {
     if ( e->button() == QMouseEvent::LeftButton )
-	emit released();			
+	emit released();
 }
 
 void PaintableFrame::mouseMoveEvent( QMouseEvent * e )

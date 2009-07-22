@@ -139,3 +139,8 @@ int CritterType::getMaxCreate()
 {
     return this->maxCreate; 
 }
+
+bool CritterType::isValid()
+{
+    return this->valid;
+}

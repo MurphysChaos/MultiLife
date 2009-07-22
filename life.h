@@ -28,12 +28,13 @@ public:
     void nextGeneration();		// Replaces contents of field with next generation
     int getCell(int x, int y);		// Examines a given cell, returns the index to critterType[]
     CritterType& getCritterType( int n ); // Used so mainWindow can read / manipulate contents of a CritterType
-    CritterType& getCritterType( int x, int y );
+    CritterType& getCritterType( int x, int y ); // Shortcut similar to getCritterType( getCell( x, y ) )
     void populateCell( int x, int y, int critter );
     void unpopulateCell( int x, int y );
 private:
     int* field;			// Array of indexes to critterType[]
-    CritterType* critterType;		// Array of rule sets
+    int** influence;			// Arrays for tracking influence of each CritterType
+    CritterType** critterType;	// Array of rule sets
     int width;			// Width of array
     int height;			// Height of array
 };
