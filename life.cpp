@@ -22,11 +22,11 @@ Life::Life(int x, int y)
     height = y;
     
     /** One-dimensional array is necessary because of limitations in C++.
-      A cell at coordinates (x,y) can be referenced with field[ x + y*width ]; where
-      width is a private field in the Life object. */
-    field = new int[width*height];     
+      A cell at coordinates (x,y) can be referenced with cell[ x + y*width ]; where
+      width is a private cell in the Life object. */
+    cell = new int[width*height];     
     for (i=0;i<(width*height);i++)
-	field[ i + j*width ] = -1;
+	cell[ i + j*width ] = -1;
     
     critterType = new CritterType *[8];
     influence = new int *[8];
@@ -43,15 +43,15 @@ Life::Life(int x, int y)
 
 Life::~Life()
 {
-    if (field != NULL) {
-	delete [] field;
-	field = NULL;
+    if (cell != NULL) {
+	delete [] cell;
+	cell = NULL;
     }
 }
 
 int Life::getCell( int x, int y ) 
 {
-    return field[ x + y * width ];
+    return cell[ x + y * width ];
 }
 
 // returns CritterType in critterType[] at index n
@@ -63,15 +63,15 @@ CritterType& Life::getCritterType( int n )
 // returns CritterType at cell (x,y)
 CritterType& Life::getCritterType( int x, int y )
 {
-    return *critterType[field[x * y + width]];
+    return *critterType[cell[x * y + width]];
 }
 
 void Life::populateCell( int x, int y, int index )
 {
-    int offX, offY, lookX, lookY;
+    int offX, offY, lookX, lookY;    
     // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of critter is
     // dependent upon selected button in colorGroupBox.
-    field[ x + y * width ] = index;
+    cell[ x + y * width ] = index;
     
     // Manipulate influence data
     for (offY=-3;offY<=3;offY++)
@@ -93,21 +93,47 @@ void Life::populateCell( int x, int y, int index )
 
 void Life::unpopulateCell( int x, int y )
 {
-    field[ x + y * width ] = -1;
+    int offX, offY, lookX, lookY;
+    
+    int index = cell[x+y*width];
+ 
+    if (cell[index] >= 0)
+    {
+	for (offY=-3;offY<=3;offY++)
+	{
+	    for (offX=-3;offX<=3;offX++)
+	    {
+		// Avoid accessing invalid array elements
+		lookX = x + offX;
+		lookY = y + offY;
+		if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
+		{
+		    influence[index][ lookX + lookY * width ] -= 
+			    critterType[index]->getObserve( offX, offY ) ?
+			    1 : 0;
+		}
+	    }
+	}
+	cell[ x + y * width ] = -1;
+    }
 }
 
 void Life::nextGeneration()
 {
-    int x, y, ox, oy, index, count; // ox := X offset, oy := Y offset
-    CritterType* centerCell = NULL;
-    CritterType* compareType = NULL;
-    int newField[ height * width ];
+    int x, y, index, ctIndex;	// ctIndex := index of critterType
+    int newCell[ height * width ];
     
     for (y=0;y<height;y++)
     {
 	for (x=0;x<width;x++)
 	{
-	    for (index=0;index<8;index++)
+	    index = x + y * width;
+	    // Create Phase -- only if empty or pushOut allowed
+	    if (cell[index] == -1 || critterType[cell[index]]->getPushOut())
+	    {
+		newCell[index]
+	    }
+	    for (ctIndex=0;ctIndex<8;ctIndex++) 
 	    {
 	    }
 	}

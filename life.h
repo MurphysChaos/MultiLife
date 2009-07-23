@@ -32,7 +32,7 @@ public:
     void populateCell( int x, int y, int critter );
     void unpopulateCell( int x, int y );
 private:
-    int* field;			// Array of indexes to critterType[]
+    int* cell;			// Array of indexes to critterType[]
     int** influence;			// Arrays for tracking influence of each CritterType
     CritterType** critterType;	// Array of rule sets
     int width;			// Width of array
