@@ -18,7 +18,7 @@
 
 void mainWindow::init()
 {
-    this->engine = new Life(80, 80);
+    this->engine = new Life(60, 60);
     this->selectedCritterType = NULL;
     this->checkOn = green;
     this->checkOff = observeCheck1->paletteBackgroundColor();

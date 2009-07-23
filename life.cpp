@@ -120,8 +120,8 @@ void Life::unpopulateCell( int x, int y )
 
 void Life::nextGeneration()
 {
-    int x, y, index, ctIndex;	// ctIndex := index of critterType
-    int newCell[ height * width ];
+    int x, y, index, ctIndex, svInfl;	// ctIndex := index of critterType; svInfl := influence for survival
+    int *newCell = new int[ height * width ];
     
     for (y=0;y<height;y++)
     {
@@ -131,11 +131,39 @@ void Life::nextGeneration()
 	    // Create Phase -- only if empty or pushOut allowed
 	    if (cell[index] == -1 || critterType[cell[index]]->getPushOut())
 	    {
-		newCell[index]
+                newCell[index] = cell[index];
+		for (ctIndex=0;ctIndex<8;ctIndex++)
+                {
+                    if (influence[ctIndex][index] >= critterType[ctIndex]->getMinCreate() && 
+                        influence[ctIndex][index] <= critterType[ctIndex]->getMaxCreate())
+                    {
+                        newCell[index] = ctIndex;
+                        break;
+                    }
+                }
 	    }
-	    for (ctIndex=0;ctIndex<8;ctIndex++) 
-	    {
-	    }
+            // Survive Phase
+            if (cell[index] != -1)
+            {
+                if (critterType[cell[index]]->getObserveOthers())
+                {
+                    svInfl = 0;
+                    for (ctIndex=0;ctIndex<8;ctIndex++)
+                    {
+                        svInfl += influence[ctIndex][index];
+                    }
+                } else {
+                    svInfl = influence[cell[index]][index];
+                }
+                ctIndex = cell[index];
+                if (influence[ctIndex][index] >= critterType[ctIndex]->getMinSurvive() &&
+                    influence[ctIndex][index] <= critterType[ctIndex]->getMaxSurvive())
+                {
+                    newCell[index] = ctIndex;
+                } else {
+                    newCell[index] = -1;
+                }
+            }
 	}
     }
 }

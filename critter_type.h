@@ -48,8 +48,10 @@ private:
     bool valid;
     QColor color;		// Color to paint on paintableframe.
     char *observe;		// 7x7 bit array for examining adjacent cells.
-    bool observeOthers;	// TRUE := Use non-similar life for survival check, FALSE := use only this type
-    bool pushOut;		// TRUE := Create into populated cells, FALSE := do not create into populated cells
+    bool observeOthers;		// TRUE := Use non-similar life for survival 
+				// check, FALSE := use only this type
+    bool pushOut;		// TRUE := Create into populated cells, 
+				// FALSE := do not create into populated cells
     int minSurvive;
     int maxSurvive;
     int minCreate;
