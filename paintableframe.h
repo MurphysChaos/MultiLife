@@ -22,6 +22,7 @@
 #include <qevent.h>
 #include <qpainter.h>
 #include <qdrawutil.h>
+#include <iostream>
 
 class PaintableFrame : public QWidget
 {

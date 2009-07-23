@@ -17,8 +17,19 @@
 
 CritterType::CritterType()
 {
-    QColor initColor = QColor::QColor(0,0,0);
-    CritterType( initColor, false, false, 2, 3, 3, 3 );
+    this->observe = new char[7];
+    for (int i=0;i<7;i++)
+    {
+	this->observe[i] = 0x00;
+    }
+    this->color = QColor::QColor(0,0,0);
+    this->observeOthers = false;
+    this->pushOut = false;
+    this->minSurvive = 2;
+    this->maxSurvive = 3;
+    this->minCreate = 3;
+    this->maxCreate = 3;
+    this->valid = true;
 }
 
 CritterType::CritterType( QColor& initColor, bool initObserveOthers, bool initPushOut,
@@ -30,7 +41,7 @@ CritterType::CritterType( QColor& initColor, bool initObserveOthers, bool initPu
     {
 	this->observe[i] = 0x00;
     }
-    this->color = initColor;
+    this->color = QColor::QColor(initColor);
     this->observeOthers = initObserveOthers;
     this->pushOut = initPushOut;
     this->minSurvive = initMinSurvive;
@@ -48,7 +59,7 @@ CritterType::~CritterType()
 
 void CritterType::setColor( QColor& newColor )
 {
-    this->color = newColor;
+    this->color = QColor::QColor(newColor);
 }
 
 // Usage: setObserveCell( [-3,3], [-3,3], [true,false] );
@@ -61,6 +72,7 @@ void CritterType::setObserveCell( int x, int y, bool value )
     char change = 2 ^ (x + 3);
     char remain = 0xff - change;
     this->observe[y] = (observe[y] & remain) + (change & ( value ? 0xff : 0x00 ) );
+    std::cerr << "observe["<<x<<","<<y<<"]="<<(value?1:0)<<"\n";
 }
 
 void CritterType::setObserveOthers( bool value )
@@ -106,8 +118,9 @@ QColor& CritterType::getColor()
 
 bool CritterType::getObserve( int x, int y )
 {
-    int n = this->observe[y] & (2 ^ (x + 3));
-    return n ? true : false;
+    char c = (this->observe[y + 3]);
+    c = c & (2 ^ (x + 3));
+    return c ? true : false;
 }
 
 bool CritterType::getObserveOthers()

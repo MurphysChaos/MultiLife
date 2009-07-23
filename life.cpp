@@ -22,8 +22,8 @@ Life::Life(int x, int y)
     height = y;
     
     /** One-dimensional array is necessary because of limitations in C++.
-      A cell at coordinates (x,y) can be referenced with cell[ x + y*width ]; where
-      width is a private cell in the Life object. */
+      * A cell at coordinates (x,y) can be referenced with cell[x+y*width];
+      * where width is a private cell in the Life object. */
     cell = new int[width*height];     
     for (i=0;i<(width*height);i++)
 	cell[ i + j*width ] = -1;
@@ -32,11 +32,11 @@ Life::Life(int x, int y)
     influence = new int *[8];
     for (i=0;i<8;i++)
     {
-	critterType[i] = new CritterType();
+	this->critterType[i] = new CritterType();
 	influence[i] = new int[width*height];
 	for (j=0;j<(width*height);j++)
 	{
-	    (influence[i])[j] = 0;
+	    influence[i][j] = 0;
 	}
     }
 }
@@ -68,9 +68,10 @@ CritterType& Life::getCritterType( int x, int y )
 
 void Life::populateCell( int x, int y, int index )
 {
-    int offX, offY, lookX, lookY;    
-    // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of critter is
-    // dependent upon selected button in colorGroupBox.
+    int offX, offY, lookX, lookY;
+    bool observeValue;
+    // Note -- critter should be >=0 and <=7, and only called by mainWindow. Value of 
+    // critter is dependent upon selected button in colorGroupBox.
     cell[ x + y * width ] = index;
     
     // Manipulate influence data
@@ -83,9 +84,11 @@ void Life::populateCell( int x, int y, int index )
 	    lookY = y + offY;
 	    if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
 	    {
-		influence[index][ lookX + lookY * width ] += 
-			critterType[index]->getObserve( offX, offY ) ?
-			1 : 0;
+                observeValue = critterType[index]->getObserve( offX, offY );
+                if (observeValue)
+                {
+                    influence[index][ lookX + lookY * width ] += 1;
+                }
 	    }
 	}
     }
@@ -97,7 +100,7 @@ void Life::unpopulateCell( int x, int y )
     
     int index = cell[x+y*width];
  
-    if (cell[index] >= 0)
+    if (index >= 0)
     {
 	for (offY=-3;offY<=3;offY++)
 	{
@@ -114,13 +117,14 @@ void Life::unpopulateCell( int x, int y )
 		}
 	    }
 	}
-	cell[ x + y * width ] = -1;
+        cell[x+y*width] = -1;
     }
 }
 
 void Life::nextGeneration()
 {
-    int x, y, index, ctIndex, svInfl;	// ctIndex := index of critterType; svInfl := influence for survival
+    // ctIndex := index of critterType; svInfl := influence for survival
+    int x, y, index, ctIndex, svInfl;	
     int *newCell = new int[ height * width ];
     
     for (y=0;y<height;y++)
@@ -134,8 +138,10 @@ void Life::nextGeneration()
                 newCell[index] = cell[index];
 		for (ctIndex=0;ctIndex<8;ctIndex++)
                 {
-                    if (influence[ctIndex][index] >= critterType[ctIndex]->getMinCreate() && 
-                        influence[ctIndex][index] <= critterType[ctIndex]->getMaxCreate())
+                    if (influence[ctIndex][index] >= 
+                        critterType[ctIndex]->getMinCreate() && 
+                        influence[ctIndex][index] <= 
+                        critterType[ctIndex]->getMaxCreate())
                     {
                         newCell[index] = ctIndex;
                         break;
@@ -156,8 +162,10 @@ void Life::nextGeneration()
                     svInfl = influence[cell[index]][index];
                 }
                 ctIndex = cell[index];
-                if (influence[ctIndex][index] >= critterType[ctIndex]->getMinSurvive() &&
-                    influence[ctIndex][index] <= critterType[ctIndex]->getMaxSurvive())
+                if (influence[ctIndex][index] >= 
+                    critterType[ctIndex]->getMinSurvive() &&
+                    influence[ctIndex][index] <= 
+                    critterType[ctIndex]->getMaxSurvive())
                 {
                     newCell[index] = ctIndex;
                 } else {

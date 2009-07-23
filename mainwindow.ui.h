@@ -19,7 +19,7 @@
 void mainWindow::init()
 {
     this->engine = new Life(60, 60);
-    this->selectedCritterType = NULL;
+    this->selectedCritterType = &this->engine->getCritterType(1);
     this->checkOn = green;
     this->checkOff = observeCheck1->paletteBackgroundColor();
 }
@@ -32,6 +32,7 @@ void mainWindow::closeEvent( QCloseEvent * )
 void mainWindow::fileExit()
 {
     delete engine;
+    engine = NULL;
     delete framePaint;
     framePaint = NULL;
     QDialog::done( 0 );
@@ -41,51 +42,145 @@ void mainWindow::setMouseDown( int x, int y )
 {
     int cellX = x / 8;
     int cellY = y / 8;
-    QColor paintColor( colorActive->paletteBackgroundColor() );
-    if (x > 0 && x < 480 && y > 0 && y < 480)
-	emit paintCell( cellX, cellY, paintColor );
+    
+    if (x > 0 && x < 480 && y > 0 && y < 480) 
+    {
+        if (engine->getCell( cellX, cellY ) == -1)
+        {
+            engine->populateCell( cellX, cellY, colorGroupBox->selectedId() );
+            emit paintCell( cellX, cellY, selectedCritterType->getColor() );
+        } else {
+            engine->unpopulateCell( cellX, cellY );
+            emit eraseCell( cellX, cellY );
+        }
+    }
     this->lastX = cellX;
     this->lastY = cellY;
 }
 
 void mainWindow::setMouseUp()
 {
-    
+    // Reserved  
 }
 
 void mainWindow::setMouseXY( int x, int y )
 {	
     int cellX = x / 8;
     int cellY = y / 8;
-    // Only perform update if mouse has moved to new display cell
+    // Only perform update if mouse has moved to new playfield cell
     if ((this->lastX != cellX) || (this->lastY != cellY)) 
     {
-	// Temporary code: get fake color.
-	QColor paintColor( colorActive->paletteBackgroundColor() );
-	if (x > 0 && x < 480 && y > 0 && y < 480)
-	    emit paintCell( cellX, cellY, paintColor );
+        if (engine->getCell( cellX, cellY ) == -1)
+        {
+            engine->populateCell( cellX, cellY, colorGroupBox->selectedId() );
+            emit paintCell( cellX, cellY, selectedCritterType->getColor() );
+        } else {
+            engine->unpopulateCell( cellX, cellY );
+            emit eraseCell( cellX, cellY );
+        }
     }
     this->lastX = cellX;
     this->lastY = cellY;
 }
 
-void mainWindow::observeCheckGroup_clicked( int buttonClicked )
+void mainWindow::repaintFrame()
 {
-    QCheckBox *targetButton = (QCheckBox*) observeCheckGroup->find( buttonClicked );
-    if ( targetButton->isChecked() ) {
-	targetButton->setPaletteBackgroundColor( checkOn );
-    } else {
-	targetButton->setPaletteBackgroundColor( checkOff );
+
+}
+
+void mainWindow::colorGroupBox_clicked( int critter )
+{
+    // Skip slot execution if colorActive is clicked.
+    if (critter>=0 && critter<=7)        
+    {
+        selectedCritterType = &this->engine->getCritterType(critter);
+        colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    
+        QString debugAppend;
+        debugAppend.sprintf("SELECTED: critterType[%d]",critter);
+        debugOutput->append( debugAppend );
     }
-    debugOutput->setText( debugOutput->text() += QString::number(buttonClicked) += "\n" );
 }
 
 void mainWindow::showColorPicker()
 {
-    // Need to update color on both type button (observeCheckGroup) and color box (colorActive).
     QColor newColor = QColorDialog::getColor();
-    colorActive->setPaletteBackgroundColor( newColor );
-    colorGroupBox->selected()->setPaletteBackgroundColor( newColor );
+    selectedCritterType->setColor( newColor );
+    colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    colorGroupBox->selected()->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: color");
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::observeCheckGroup_clicked( int buttonClicked )
+{
+    int offX, offY;
+    bool newValue;
+        
+    newValue = (this->observeCheckGroup.find( buttonClicked )).isOn();
+    std::cerr << "observeCheckGroup["<<buttonClicked<<"] clicked\n";
+    std::cerr << "    newValue = ";
+    if (newValue)
+        std::cerr << "true\n";
+    else
+        std::cerr << "false\n";
+    
+    offX = observeCheckGroup->selectedId() % 7;
+    offY = observeCheckGroup->selectedId() / 7;
+    selectedCritterType->setObserveCell( offX, offY, newValue );
+    
+    QString debugAppend;
+    debugAppend.sprintf("SELECTED: observeCheckGroup[%d]",buttonClicked);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::spinMinCreate_valueChanged( int value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: spinMinCreate(%d)",value);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::spinMaxCreate_valueChanged( int value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: spinMaxCreate(%d)",value);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::spinMinSurvive_valueChanged( int value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: spinMinSurvive(%d)",value);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::spinMaxSurvive_valueChanged( int value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: spinMaxSurvive(%d)",value);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::checkAllowPushOut_toggled( bool value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("TOGGLED: checkAllowPushOut(%d)",value ? 1 : 0);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::checkObserveNonsimilar_toggled( bool value )
+{
+    QString debugAppend;
+    debugAppend.sprintf("TOGGLED: checkObserveNonsimilar(%d)",value ? 1 : 0);
+    debugOutput->append( debugAppend );
+}
+
+void mainWindow::buttonStep_clicked()
+{
+
 }
 
 #endif

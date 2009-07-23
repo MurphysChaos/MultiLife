@@ -17,6 +17,7 @@
 #define CRITTER_TYPE_H
 
 #include <qcolor.h>
+#include <iostream>
 
 class CritterType
 {
