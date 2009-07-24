@@ -84,7 +84,7 @@ void Life::populateCell( int x, int y, int index )
 	    lookY = y + offY;
 	    if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
 	    {
-                observeValue = critterType[index]->getObserve( offX, offY );
+                observeValue = critterType[index]->getObserveCell( offX, offY );
                 if (observeValue)
                 {
                     influence[index][ lookX + lookY * width ] += 1;
@@ -112,7 +112,7 @@ void Life::unpopulateCell( int x, int y )
 		if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
 		{
 		    influence[index][ lookX + lookY * width ] -= 
-			    critterType[index]->getObserve( offX, offY ) ?
+			    critterType[index]->getObserveCell( offX, offY ) ?
 			    1 : 0;
 		}
 	    }

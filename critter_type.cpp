@@ -14,6 +14,7 @@
   */
 
 #include <critter_type.h>
+#include <cmath>
 
 CritterType::CritterType()
 {
@@ -69,10 +70,24 @@ void CritterType::setColor( QColor& newColor )
 // Note: offset 0,0 is not used by the simulation
 void CritterType::setObserveCell( int x, int y, bool value )
 {
-    char change = 2 ^ (x + 3);
+    int i;
+    char change = (char) pow(2,x+3);
     char remain = 0xff - change;
-    this->observe[y] = (observe[y] & remain) + (change & ( value ? 0xff : 0x00 ) );
-    std::cerr << "observe["<<x<<","<<y<<"]="<<(value?1:0)<<"\n";
+    
+    this->observe[y+3] = (observe[y+3] & remain) + (change & ( value ? 0xff : 0x00 ) );
+}
+
+void CritterType::cerrObserve()
+{
+    int x, y;
+    
+    for (y=0;y<7;y++)
+    {
+        for (x=0;x<7;x++)
+            std::cerr << (observe[y]&(1<<x) ? '1' : '0');
+        std::cerr << "|";    
+    }
+    std::cerr << "\n";
 }
 
 void CritterType::setObserveOthers( bool value )
@@ -116,10 +131,10 @@ QColor& CritterType::getColor()
     return this->color;
 }
 
-bool CritterType::getObserve( int x, int y )
+bool CritterType::getObserveCell( int x, int y )
 {
     char c = (this->observe[y + 3]);
-    c = c & (2 ^ (x + 3));
+    c = c & (char) pow(2,x+3);
     return c ? true : false;
 }
 

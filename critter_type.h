@@ -37,7 +37,7 @@ public:
     void setMaxCreate( int value );
     void deleteCritterType();
     QColor& getColor();
-    bool getObserve( int x, int y );
+    bool getObserveCell( int x, int y );
     bool getObserveOthers();
     bool getPushOut();
     int getMinSurvive();
@@ -45,14 +45,15 @@ public:
     int getMinCreate();
     int getMaxCreate();
     bool isValid();
+    void cerrObserve();
 private:
     bool valid;
-    QColor color;		// Color to paint on paintableframe.
-    char *observe;		// 7x7 bit array for examining adjacent cells.
-    bool observeOthers;		// TRUE := Use non-similar life for survival 
-				// check, FALSE := use only this type
-    bool pushOut;		// TRUE := Create into populated cells, 
-				// FALSE := do not create into populated cells
+    QColor color;	// Color to paint on paintableframe.
+    char *observe;	// 7x7 bit array for examining adjacent cells.
+    bool observeOthers;	// TRUE := Use non-similar life for survival 
+			// check, FALSE := use only this type
+    bool pushOut;	// TRUE := Create into populated cells, 
+			// FALSE := do not create into populated cells
     int minSurvive;
     int maxSurvive;
     int minCreate;

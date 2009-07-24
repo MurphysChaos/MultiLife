@@ -19,9 +19,10 @@
 void mainWindow::init()
 {
     this->engine = new Life(60, 60);
-    this->selectedCritterType = &this->engine->getCritterType(1);
-    this->checkOn = green;
+    this->selectedCritterType = &this->engine->getCritterType(0);
+    this->checkOn = QColor::QColor(255,127,0);
     this->checkOff = observeCheck1->paletteBackgroundColor();
+    this->updateTools();
 }
 
 void mainWindow::closeEvent( QCloseEvent * )
@@ -94,8 +95,9 @@ void mainWindow::colorGroupBox_clicked( int critter )
     if (critter>=0 && critter<=7)        
     {
         selectedCritterType = &this->engine->getCritterType(critter);
-        colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
-    
+        this->updateTools();
+        
+        // Update tools to current selectedCritterType
         QString debugAppend;
         debugAppend.sprintf("SELECTED: critterType[%d]",critter);
         debugOutput->append( debugAppend );
@@ -117,19 +119,23 @@ void mainWindow::showColorPicker()
 void mainWindow::observeCheckGroup_clicked( int buttonClicked )
 {
     int offX, offY;
-    bool newValue;
-        
-    newValue = (this->observeCheckGroup.find( buttonClicked )).isOn();
-    std::cerr << "observeCheckGroup["<<buttonClicked<<"] clicked\n";
-    std::cerr << "    newValue = ";
-    if (newValue)
-        std::cerr << "true\n";
-    else
-        std::cerr << "false\n";
+    QPushButton *targetButton = (QPushButton*) observeCheckGroup->find(buttonClicked);
+    bool newValue = targetButton->isOn();
     
-    offX = observeCheckGroup->selectedId() % 7;
-    offY = observeCheckGroup->selectedId() / 7;
-    selectedCritterType->setObserveCell( offX, offY, newValue );
+    offX = (buttonClicked % 7) - 3;
+    offY = (buttonClicked / 7) - 3;
+    selectedCritterType->setObserveCell(offX,offY,newValue);
+    
+    if (selectedCritterType->getObserveCell(offX,offY))
+    {
+        std::cerr << "checkOn!\n";
+        targetButton->setPaletteBackgroundColor(this->checkOn);
+    }
+    else
+    {
+        targetButton->setPaletteBackgroundColor(this->checkOff);
+        std::cerr << "checkOff!\n";
+    }
     
     QString debugAppend;
     debugAppend.sprintf("SELECTED: observeCheckGroup[%d]",buttonClicked);
@@ -138,6 +144,12 @@ void mainWindow::observeCheckGroup_clicked( int buttonClicked )
 
 void mainWindow::spinMinCreate_valueChanged( int value )
 {
+    selectedCritterType->setMinCreate( value );
+    if (selectedCritterType->getMaxCreate() < value)
+    {
+        spinMaxCreate->setValue( value );
+    }
+    
     QString debugAppend;
     debugAppend.sprintf("CHANGED: spinMinCreate(%d)",value);
     debugOutput->append( debugAppend );
@@ -145,6 +157,12 @@ void mainWindow::spinMinCreate_valueChanged( int value )
 
 void mainWindow::spinMaxCreate_valueChanged( int value )
 {
+    selectedCritterType->setMaxCreate( value );
+    if (selectedCritterType->getMinCreate() < value)
+    {
+        spinMinCreate->setValue( value );
+    }
+    
     QString debugAppend;
     debugAppend.sprintf("CHANGED: spinMaxCreate(%d)",value);
     debugOutput->append( debugAppend );
@@ -152,6 +170,12 @@ void mainWindow::spinMaxCreate_valueChanged( int value )
 
 void mainWindow::spinMinSurvive_valueChanged( int value )
 {
+    selectedCritterType->setMinSurvive( value );
+    if (selectedCritterType->getMaxSurvive() < value)
+    {
+        spinMaxSurvive->setValue( value );
+    }
+    
     QString debugAppend;
     debugAppend.sprintf("CHANGED: spinMinSurvive(%d)",value);
     debugOutput->append( debugAppend );
@@ -159,6 +183,12 @@ void mainWindow::spinMinSurvive_valueChanged( int value )
 
 void mainWindow::spinMaxSurvive_valueChanged( int value )
 {
+    selectedCritterType->setMaxSurvive( value );
+    if (selectedCritterType->getMinSurvive() > value)
+    {
+        spinMinSurvive->setValue( value );
+    }
+    
     QString debugAppend;
     debugAppend.sprintf("CHANGED: spinMaxSurvive(%d)",value);
     debugOutput->append( debugAppend );
@@ -166,6 +196,8 @@ void mainWindow::spinMaxSurvive_valueChanged( int value )
 
 void mainWindow::checkAllowPushOut_toggled( bool value )
 {
+    selectedCritterType->setPushOut( value );
+    
     QString debugAppend;
     debugAppend.sprintf("TOGGLED: checkAllowPushOut(%d)",value ? 1 : 0);
     debugOutput->append( debugAppend );
@@ -173,6 +205,8 @@ void mainWindow::checkAllowPushOut_toggled( bool value )
 
 void mainWindow::checkObserveNonsimilar_toggled( bool value )
 {
+    selectedCritterType->setObserveOthers( value );
+    
     QString debugAppend;
     debugAppend.sprintf("TOGGLED: checkObserveNonsimilar(%d)",value ? 1 : 0);
     debugOutput->append( debugAppend );
@@ -180,7 +214,32 @@ void mainWindow::checkObserveNonsimilar_toggled( bool value )
 
 void mainWindow::buttonStep_clicked()
 {
+    engine->nextGeneration();
+}
 
+void mainWindow::updateTools()
+{
+    int i;
+    QPushButton* targetButton;
+    colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    for (i=0;i<49;i++)
+    {
+        targetButton = (QPushButton*) observeCheckGroup->find(i);
+        if(selectedCritterType->getObserveCell( (i%7)-3, (i/7)-3 ))
+        {
+            targetButton->setOn(true);
+            targetButton->setPaletteBackgroundColor( checkOn );
+        } else {
+            targetButton->setOn(false);
+            targetButton->setPaletteBackgroundColor( checkOff );
+        }
+    }
+    this->spinMinCreate->setValue(selectedCritterType->getMinCreate());
+    this->spinMaxCreate->setValue(selectedCritterType->getMaxCreate());
+    this->spinMinSurvive->setValue(selectedCritterType->getMinSurvive());
+    this->spinMaxSurvive->setValue(selectedCritterType->getMaxSurvive());
+    this->checkAllowPushOut->setChecked(selectedCritterType->getPushOut());
+    this->checkObserveNonsimilar->setChecked(selectedCritterType->getObserveOthers());
 }
 
 #endif

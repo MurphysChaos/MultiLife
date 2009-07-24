@@ -1,7 +1,7 @@
 TEMPLATE	= app
 LANGUAGE	= C++
 
-CONFIG	+= qt warn_on release debug
+CONFIG	+= qt warn_on release
 
 HEADERS	+= paintableframe.h \
 	life.h \
