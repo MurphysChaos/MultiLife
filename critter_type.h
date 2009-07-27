@@ -18,6 +18,7 @@
 
 #include <qcolor.h>
 #include <iostream>
+#include <cmath>
 
 class CritterType
 {

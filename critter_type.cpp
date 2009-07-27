@@ -14,7 +14,6 @@
   */
 
 #include <critter_type.h>
-#include <cmath>
 
 CritterType::CritterType()
 {
