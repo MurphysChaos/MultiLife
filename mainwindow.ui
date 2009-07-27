@@ -18,37 +18,18 @@
     <property name="sizeGripEnabled">
         <bool>false</bool>
     </property>
-    <widget class="QFrame">
+    <widget class="QTextEdit">
         <property name="name">
-            <cstring>framePaintBorder</cstring>
+            <cstring>debugOutput</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>5</x>
-                <y>5</y>
-                <width>492</width>
-                <height>492</height>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
             </rect>
         </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <widget class="PaintableFrame">
-            <property name="name">
-                <cstring>framePaint</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>5</x>
-                    <y>5</y>
-                    <width>481</width>
-                    <height>481</height>
-                </rect>
-            </property>
-        </widget>
     </widget>
     <widget class="QLabel">
         <property name="name">
@@ -69,6 +50,44 @@
             <cstring>spinMinCreate</cstring>
         </property>
     </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>checkAllowPushOut</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>305</y>
+                <width>145</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Allow Push-out</string>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>Allows creation to take place over a populated cell. A cell is normally skipped during the creation phase if it's already populated.</string>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>checkObserveNonsimilar</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>505</x>
+                <y>325</y>
+                <width>145</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Observe Non-Similar</string>
+        </property>
+        <property name="toolTip" stdset="0">
+            <string>When off, only cells of identical type are treated as populated for purposes of survival.</string>
+        </property>
+    </widget>
     <widget class="QLabel">
         <property name="name">
             <cstring>textLabel4</cstring>
@@ -86,86 +105,6 @@
         </property>
         <property name="buddy" stdset="0">
             <cstring>spinMinSurvive</cstring>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>labelMinimum</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>565</x>
-                <y>225</y>
-                <width>40</width>
-                <height>16</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Min</string>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>labelMaximum</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>610</x>
-                <y>225</y>
-                <width>40</width>
-                <height>16</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Max</string>
-        </property>
-    </widget>
-    <widget class="QTextEdit">
-        <property name="name">
-            <cstring>debugOutput</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>646</width>
-                <height>76</height>
-            </rect>
-        </property>
-    </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>buttonQuit</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>605</x>
-                <y>470</y>
-                <width>45</width>
-                <height>25</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Quit</string>
-        </property>
-        <property name="accel">
-            <string>Alt+Q</string>
-        </property>
-    </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>buttonStep</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>555</x>
-                <y>470</y>
-                <width>45</width>
-                <height>26</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Step</string>
         </property>
     </widget>
     <widget class="QButtonGroup">
@@ -369,6 +308,34 @@
         </widget>
         <widget class="QPushButton">
             <property name="name">
+                <cstring>critterType0</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>20</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="focusPolicy">
+                <enum>TabFocus</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>true</bool>
+            </property>
+            <property name="buttonGroupId">
+                <number>0</number>
+            </property>
+        </widget>
+        <widget class="QPushButton">
+            <property name="name">
                 <cstring>colorActive</cstring>
             </property>
             <property name="geometry">
@@ -399,72 +366,6 @@
                 <number>999</number>
             </property>
         </widget>
-        <widget class="QPushButton">
-            <property name="name">
-                <cstring>critterType0</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>10</y>
-                    <width>20</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="focusPolicy">
-                <enum>TabFocus</enum>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-            <property name="toggleButton">
-                <bool>true</bool>
-            </property>
-            <property name="on">
-                <bool>true</bool>
-            </property>
-            <property name="buttonGroupId">
-                <number>0</number>
-            </property>
-        </widget>
-    </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>checkAllowPushOut</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>505</x>
-                <y>305</y>
-                <width>145</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Allow Push-out</string>
-        </property>
-        <property name="toolTip" stdset="0">
-            <string>Allows creation to take place over a populated cell. A cell is normally skipped during the creation phase if it's already populated.</string>
-        </property>
-    </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>checkObserveNonsimilar</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>505</x>
-                <y>325</y>
-                <width>145</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Observe Non-Similar</string>
-        </property>
-        <property name="toolTip" stdset="0">
-            <string>When off, only cells of identical type are treated as populated for purposes of survival.</string>
-        </property>
     </widget>
     <widget class="QButtonGroup">
         <property name="name">
@@ -1569,6 +1470,22 @@
             </property>
         </widget>
     </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonStep</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>555</x>
+                <y>470</y>
+                <width>45</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Step</string>
+        </property>
+    </widget>
     <widget class="QSpinBox">
         <property name="name">
             <cstring>spinMinCreate</cstring>
@@ -1585,20 +1502,55 @@
             <number>48</number>
         </property>
     </widget>
-    <widget class="QSpinBox">
+    <widget class="QLabel">
         <property name="name">
-            <cstring>spinMaxCreate</cstring>
+            <cstring>labelMinimum</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>610</x>
-                <y>245</y>
+                <x>565</x>
+                <y>225</y>
+                <width>40</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Min</string>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMinSurvive</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>565</x>
+                <y>275</y>
                 <width>40</width>
                 <height>26</height>
             </rect>
         </property>
         <property name="maxValue">
             <number>47</number>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonQuit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>605</x>
+                <y>470</y>
+                <width>45</width>
+                <height>25</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Quit</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Q</string>
         </property>
     </widget>
     <widget class="QSpinBox">
@@ -1617,14 +1569,30 @@
             <number>47</number>
         </property>
     </widget>
-    <widget class="QSpinBox">
+    <widget class="QLabel">
         <property name="name">
-            <cstring>spinMinSurvive</cstring>
+            <cstring>labelMaximum</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>565</x>
-                <y>275</y>
+                <x>610</x>
+                <y>225</y>
+                <width>40</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Max</string>
+        </property>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinMaxCreate</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>610</x>
+                <y>245</y>
                 <width>40</width>
                 <height>26</height>
             </rect>
@@ -1632,6 +1600,38 @@
         <property name="maxValue">
             <number>47</number>
         </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>framePaintBorder</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>5</y>
+                <width>492</width>
+                <height>492</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <widget class="PaintableFrame">
+            <property name="name">
+                <cstring>framePaint</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>5</x>
+                    <y>5</y>
+                    <width>481</width>
+                    <height>481</height>
+                </rect>
+            </property>
+        </widget>
     </widget>
 </widget>
 <customwidgets>
@@ -1654,10 +1654,10 @@
         <signal>released()</signal>
         <signal>pressed()</signal>
         <signal>pressed(int,int)</signal>
+        <signal>requestRepaint()</signal>
         <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
         <slot access="public" specifier="">paint(int,int)</slot>
         <slot access="public" specifier="">erase(int,int)</slot>
-        <slot access="public" specifier="">slot()</slot>
         <property type="Int">zoom</property>
     </customwidget>
 </customwidgets>
@@ -1707,7 +1707,7 @@
         <sender>colorActive</sender>
         <signal>clicked()</signal>
         <receiver>mainWindow</receiver>
-        <slot>showColorPicker()</slot>
+        <slot>colorActive_clicked()</slot>
     </connection>
     <connection>
         <sender>buttonStep</sender>
@@ -1762,6 +1762,12 @@
         <signal>eraseCell( int, int )</signal>
         <receiver>framePaint</receiver>
         <slot>erase(int,int)</slot>
+    </connection>
+    <connection>
+        <sender>framePaint</sender>
+        <signal>requestRepaint()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>repaintFrame()</slot>
     </connection>
 </connections>
 <tabstops>
@@ -1846,6 +1852,7 @@
     <variable access="private">Life* engine;</variable>
     <variable access="private">QColor checkOn;</variable>
     <variable access="private">QColor checkOff;</variable>
+    <variable access="private">bool paintMode;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
@@ -1859,7 +1866,7 @@
     <slot>setMouseXY( int x, int y )</slot>
     <slot>repaintFrame()</slot>
     <slot>colorGroupBox_clicked( int critter )</slot>
-    <slot>showColorPicker()</slot>
+    <slot>colorActive_clicked()</slot>
     <slot>observeCheckGroup_clicked( int buttonClicked )</slot>
     <slot>spinMinCreate_valueChanged( int value )</slot>
     <slot>spinMaxCreate_valueChanged( int value )</slot>
@@ -1868,10 +1875,11 @@
     <slot>checkAllowPushOut_toggled( bool value )</slot>
     <slot>checkObserveNonsimilar_toggled( bool value )</slot>
     <slot>buttonStep_clicked()</slot>
-    <slot>updateTools()</slot>
+    <slot>paintEvent( QPaintEvent * e )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
+    <function>updateTools()</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>

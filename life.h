@@ -35,6 +35,8 @@ public:
     CritterType& getCritterType( int x, int y );
     void populateCell( int x, int y, int critter );
     void unpopulateCell( int x, int y );
+    int getWidth();
+    int getHeight();
 private:
     int* cell;			// Array of indexes to critterType[]
     int** influence;		// Arrays for tracking influence of each CritterType

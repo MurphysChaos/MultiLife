@@ -29,6 +29,8 @@ public:
     ~CritterType();
     void setColor( QColor& newcolor );
     void setObserveCell( int x, int y, bool value );
+    void setObserveCells( char r0, char r1, char r2, char r3, 
+                          char r4, char r5, char r6 );
     void setObserveOthers( bool value );
     void setPushOut( bool value );
     void setMinSurvive( int value );
@@ -45,7 +47,6 @@ public:
     int getMinCreate();
     int getMaxCreate();
     bool isValid();
-    void cerrObserve();
 private:
     bool valid;
     QColor color;	// Color to paint on paintableframe.

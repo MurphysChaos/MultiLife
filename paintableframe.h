@@ -45,6 +45,7 @@ signals:
     void pressed( int x, int y );
     void released();
     void mousemove( int x, int y );
+    void requestRepaint();
 };
 
 #endif

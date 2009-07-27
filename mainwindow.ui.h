@@ -50,9 +50,11 @@ void mainWindow::setMouseDown( int x, int y )
         {
             engine->populateCell( cellX, cellY, colorGroupBox->selectedId() );
             emit paintCell( cellX, cellY, selectedCritterType->getColor() );
+            this->paintMode = true;
         } else {
             engine->unpopulateCell( cellX, cellY );
             emit eraseCell( cellX, cellY );
+            this->paintMode = false;
         }
     }
     this->lastX = cellX;
@@ -65,13 +67,13 @@ void mainWindow::setMouseUp()
 }
 
 void mainWindow::setMouseXY( int x, int y )
-{	
+{
     int cellX = x / 8;
     int cellY = y / 8;
     // Only perform update if mouse has moved to new playfield cell
     if ((this->lastX != cellX) || (this->lastY != cellY)) 
     {
-        if (engine->getCell( cellX, cellY ) == -1)
+        if (this->paintMode)
         {
             engine->populateCell( cellX, cellY, colorGroupBox->selectedId() );
             emit paintCell( cellX, cellY, selectedCritterType->getColor() );
@@ -86,7 +88,23 @@ void mainWindow::setMouseXY( int x, int y )
 
 void mainWindow::repaintFrame()
 {
-
+    int cellX, cellY;
+    int width = engine->getWidth(), height = engine->getHeight();
+    CritterType* targetCritter;
+    
+    framePaint->repaint();
+    
+    for (cellY=0;cellY<height;cellY++)
+    {
+        for (cellX=0;cellX<width;cellX++)
+        {
+            if (this->engine->getCell( cellX, cellY ) != -1) 
+            {
+                targetCritter = &this->engine->getCritterType( cellX, cellY );
+                emit paintCell( cellX, cellY, targetCritter->getColor() );
+            }
+        }
+    }
 }
 
 void mainWindow::colorGroupBox_clicked( int critter )
@@ -104,12 +122,13 @@ void mainWindow::colorGroupBox_clicked( int critter )
     }
 }
 
-void mainWindow::showColorPicker()
+void mainWindow::colorActive_clicked() // Show Color Picker
 {
     QColor newColor = QColorDialog::getColor();
     selectedCritterType->setColor( newColor );
     colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
     colorGroupBox->selected()->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    repaintFrame();
     
     QString debugAppend;
     debugAppend.sprintf("CHANGED: color");
@@ -128,13 +147,11 @@ void mainWindow::observeCheckGroup_clicked( int buttonClicked )
     
     if (selectedCritterType->getObserveCell(offX,offY))
     {
-        std::cerr << "checkOn!\n";
         targetButton->setPaletteBackgroundColor(this->checkOn);
     }
     else
     {
         targetButton->setPaletteBackgroundColor(this->checkOff);
-        std::cerr << "checkOff!\n";
     }
     
     QString debugAppend;
@@ -215,12 +232,15 @@ void mainWindow::checkObserveNonsimilar_toggled( bool value )
 void mainWindow::buttonStep_clicked()
 {
     engine->nextGeneration();
+    repaintFrame();
 }
 
 void mainWindow::updateTools()
 {
     int i;
     QPushButton* targetButton;
+    targetButton = (QPushButton*) colorGroupBox->selected();
+    targetButton->setPaletteBackgroundColor( selectedCritterType->getColor() );
     colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
     for (i=0;i<49;i++)
     {
@@ -240,6 +260,11 @@ void mainWindow::updateTools()
     this->spinMaxSurvive->setValue(selectedCritterType->getMaxSurvive());
     this->checkAllowPushOut->setChecked(selectedCritterType->getPushOut());
     this->checkObserveNonsimilar->setChecked(selectedCritterType->getObserveOthers());
+}
+
+void mainWindow::paintEvent( QPaintEvent *e )
+{
+    repaintFrame();
 }
 
 #endif

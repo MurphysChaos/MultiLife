@@ -77,17 +77,16 @@ void CritterType::setObserveCell( int x, int y, bool value )
     this->observe[y+3] = (observe[y+3] & remain) + (change & ( value ? 0xff : 0x00 ) );
 }
 
-void CritterType::cerrObserve()
+void CritterType::setObserveCells( char r0, char r1, char r2, char r3, 
+                                   char r4, char r5, char r6 )
 {
-    int x, y;
-    
-    for (y=0;y<7;y++)
-    {
-        for (x=0;x<7;x++)
-            std::cerr << (observe[y]&(1<<x) ? '1' : '0');
-        std::cerr << "|";    
-    }
-    std::cerr << "\n";
+    this->observe[0] = r0;
+    this->observe[1] = r1;
+    this->observe[2] = r2;
+    this->observe[3] = r3;
+    this->observe[4] = r4;
+    this->observe[5] = r5;
+    this->observe[6] = r6;
 }
 
 void CritterType::setObserveOthers( bool value )

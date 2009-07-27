@@ -31,24 +31,25 @@ PaintableFrame::~PaintableFrame()
 
 void PaintableFrame::paint( int x, int y )
 {
-    QBrush brush( black );
-    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), false, 1, &brush );
+    QColor pen = QColor::QColor( Qt::black );
+    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::paint( int x, int y, QColor& color )
 {
-    QBrush brush( color );
-    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), false, 1, &brush );
+    QColor pen = QColor::QColor( color );
+    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::erase( int x, int y )
 {
-    QBrush brush( colorGroup().midlight() );
-    qDrawShadePanel( painter, x*8, y*8, 8, 8, colorGroup(), true, 1, &brush );
+    QColor pen = QColor::QColor( colorGroup().midlight() );
+    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::paintEvent( QPaintEvent * e )
 {
+    QBrush brush( colorGroup().midlight() );
     for (int j=0;j<480;j+=8)
         for (int i=0;i<480;i+=8)
             qDrawShadePanel( painter, i, j, 8, 8, colorGroup(), true, 1, 0 );
