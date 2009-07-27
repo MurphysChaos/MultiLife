@@ -193,14 +193,13 @@ void Life::nextGeneration()
                             }
                         }
                     }
-                    cell[ x+y*width ] = -1;
                 }
             }
 	    // Create Phase -- only if empty or pushOut allowed
 	    if (cell[index] == -1 || critterType[cell[index]]->getPushOut())
 	    {
                 nextCell[index] = cell[index];
-		for (ctIndex=0;ctIndex<8;ctIndex++)
+for (ctIndex=0;ctIndex<8;ctIndex++)
                 {
                     if (influence[ctIndex][index] >= 
                         critterType[ctIndex]->getMinCreate() && 
