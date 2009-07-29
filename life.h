@@ -37,12 +37,15 @@ public:
     void unpopulateCell( int x, int y );
     int getWidth();
     int getHeight();
+    int getAge() const { return age;}
+    void addAge(int x);
 private:
     int* cell;			// Array of indexes to critterType[]
     int** influence;		// Arrays for tracking influence of each CritterType
     CritterType** critterType;	// Array of rule sets
     int width;			// Width of array
     int height;			// Height of array
+    int age;
 };
 
 #endif

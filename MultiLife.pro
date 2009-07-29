@@ -5,12 +5,14 @@ CONFIG	+= qt warn_on release
 
 HEADERS	+= paintableframe.h \
 	life.h \
-	critter_type.h
+	critter_type.h \
+	timeClass.h
 
 SOURCES	+= main.cpp \
 	paintableframe.cpp \
 	life.cpp \
-	critter_type.cpp
+	critter_type.cpp \
+	timeFunct.cpp
 
 FORMS	= mainwindow.ui
 

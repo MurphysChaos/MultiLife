@@ -23,6 +23,16 @@ void mainWindow::init()
     this->checkOn = QColor::QColor(255,127,0);
     this->checkOff = observeCheck1->paletteBackgroundColor();
     this->updateTools();
+    timer = new LifeTimer(this);
+    running = false;
+    ageLabel1 = new QLabel("Age", this);
+    ageLabel1->setGeometry(510, 365, 30, 30);
+    ageLabel2 = new QLabel("0", this);
+    ageLabel2->setGeometry(545, 365, 40, 30); 
+    slider = new QSlider(100, 400, 10, 300, QSlider::Horizontal, this);
+    slider->setGeometry(500, 400, 100, 30);
+    connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selection
+    connect( slider, SIGNAL(valueChanged(int)), timer,  SLOT(setSpeed(int)) );
 }
 
 void mainWindow::closeEvent( QCloseEvent * )
@@ -229,11 +239,6 @@ void mainWindow::checkObserveNonsimilar_toggled( bool value )
     debugOutput->append( debugAppend );
 }
 
-void mainWindow::buttonStep_clicked()
-{
-    engine->nextGeneration();
-    repaintFrame();
-}
 
 void mainWindow::updateTools()
 {
@@ -268,3 +273,31 @@ void mainWindow::paintEvent( QPaintEvent *e )
 }
 
 #endif
+
+
+void mainWindow::startSlot()
+{
+    running = !running;
+    timer->pause(!running);
+    if (running){
+	start_button->setText("Stop");
+    }
+    else{
+	start_button->setText("Start");
+    }
+}
+
+void mainWindow::buttonStep_clicked()
+{
+    //engine->nextGeneration();
+    //repaintFrame();
+    ageSlot();
+}
+
+void mainWindow::ageSlot()
+{
+    engine->addAge(1);
+    ageLabel2->setNum(engine->getAge());
+    engine->nextGeneration();
+    repaintFrame();
+}

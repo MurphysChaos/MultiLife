@@ -18,19 +18,6 @@
     <property name="sizeGripEnabled">
         <bool>false</bool>
     </property>
-    <widget class="QTextEdit">
-        <property name="name">
-            <cstring>debugOutput</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>646</width>
-                <height>76</height>
-            </rect>
-        </property>
-    </widget>
     <widget class="QLabel">
         <property name="name">
             <cstring>textLabel3</cstring>
@@ -1633,6 +1620,38 @@
             </property>
         </widget>
     </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>start_button</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>500</x>
+                <y>470</y>
+                <width>50</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Start</string>
+        </property>
+        <property name="toggleButton">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
+            </rect>
+        </property>
+    </widget>
 </widget>
 <customwidgets>
     <customwidget>
@@ -1655,6 +1674,7 @@
         <signal>pressed()</signal>
         <signal>pressed(int,int)</signal>
         <signal>requestRepaint()</signal>
+        <slot access="public" specifier="">slot()</slot>
         <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
         <slot access="public" specifier="">paint(int,int)</slot>
         <slot access="public" specifier="">erase(int,int)</slot>
@@ -1769,6 +1789,12 @@
         <receiver>mainWindow</receiver>
         <slot>repaintFrame()</slot>
     </connection>
+    <connection>
+        <sender>start_button</sender>
+        <signal>clicked()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>startSlot()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>critterType0</tabstop>
@@ -1843,6 +1869,8 @@
     <include location="local" impldecl="in declaration">life.h</include>
     <include location="global" impldecl="in declaration">qcolordialog.h</include>
     <include location="global" impldecl="in declaration">iostream</include>
+    <include location="local" impldecl="in declaration">timeClass.h</include>
+    <include location="global" impldecl="in declaration">qslider.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
@@ -1853,6 +1881,11 @@
     <variable access="private">QColor checkOn;</variable>
     <variable access="private">QColor checkOff;</variable>
     <variable access="private">bool paintMode;</variable>
+    <variable access="private">bool running;</variable>
+    <variable access="private">QLabel * ageLabel1;</variable>
+    <variable access="private">QLabel * ageLabel2;</variable>
+    <variable access="private">LifeTimer * timer;</variable>
+    <variable access="private">QSlider * slider;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
@@ -1874,8 +1907,10 @@
     <slot>spinMaxSurvive_valueChanged( int value )</slot>
     <slot>checkAllowPushOut_toggled( bool value )</slot>
     <slot>checkObserveNonsimilar_toggled( bool value )</slot>
-    <slot>buttonStep_clicked()</slot>
     <slot>paintEvent( QPaintEvent * e )</slot>
+    <slot>startSlot()</slot>
+    <slot>buttonStep_clicked()</slot>
+    <slot>ageSlot()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

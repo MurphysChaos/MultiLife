@@ -20,6 +20,7 @@ Life::Life(int x, int y)
     int i = 0, j = 0;
     width = x;
     height = y;
+    age = 0;
     
     /** One-dimensional array is necessary because of limitations in C++.
       * A cell at coordinates (x,y) can be referenced with cell[x+y*width];
@@ -247,4 +248,8 @@ int Life::getWidth()
 int Life::getHeight()
 {
     return this->height;
+}
+
+void Life::addAge(int x){
+  age = age+x;
 }
