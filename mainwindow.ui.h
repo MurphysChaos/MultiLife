@@ -33,6 +33,12 @@ void mainWindow::init()
     slider->setGeometry(500, 400, 100, 30);
     connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selectio
     connect( slider, SIGNAL(valueChanged(int)), timer,  SLOT(setSpeed(int)) );
+    cursor = new QCursor();
+    cursor->setShape(10);
+    
+    QString debugAppend;
+    debugAppend.sprintf("CHANGED: cursor to ",cursor->shape());
+    debugOutput->append( debugAppend );
 }
 
 void mainWindow::closeEvent( QCloseEvent * )
@@ -61,6 +67,7 @@ void mainWindow::clearSlot()
 		this->paintMode = false;
 	    }		
 	 }
+    ageLabel2->setNum(engine->getAge());
     repaintFrame();	
     }
 }

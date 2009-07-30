@@ -1896,6 +1896,7 @@
     <include location="global" impldecl="in declaration">iostream</include>
     <include location="local" impldecl="in declaration">timeClass.h</include>
     <include location="global" impldecl="in declaration">qslider.h</include>
+    <include location="global" impldecl="in declaration">qcursor.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
@@ -1911,6 +1912,7 @@
     <variable access="private">QLabel * ageLabel2;</variable>
     <variable access="private">LifeTimer * timer;</variable>
     <variable access="private">QSlider * slider;</variable>
+    <variable access="private">QCursor * cursor;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
