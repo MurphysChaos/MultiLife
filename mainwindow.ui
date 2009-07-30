@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>656</width>
-            <height>587</height>
+            <height>501</height>
         </rect>
     </property>
     <property name="caption">
@@ -1604,19 +1604,6 @@
             </property>
         </widget>
     </widget>
-    <widget class="QTextEdit">
-        <property name="name">
-            <cstring>debugOutput</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>646</width>
-                <height>76</height>
-            </rect>
-        </property>
-    </widget>
     <widget class="QPushButton">
         <property name="name">
             <cstring>buttonStep</cstring>
@@ -1669,6 +1656,19 @@
         </property>
         <property name="toggleButton">
             <bool>false</bool>
+        </property>
+    </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
+            </rect>
         </property>
     </widget>
 </widget>
@@ -1897,6 +1897,7 @@
     <include location="local" impldecl="in declaration">timeClass.h</include>
     <include location="global" impldecl="in declaration">qslider.h</include>
     <include location="global" impldecl="in declaration">qcursor.h</include>
+    <include location="global" impldecl="in declaration">qnamespace.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
