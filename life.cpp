@@ -250,6 +250,22 @@ int Life::getHeight()
     return this->height;
 }
 
-void Life::addAge(int x){
-  age = age+x;
+void Life::setAge(int x){
+  age = x;
+}
+void Life::clear(){
+    int i,j,x,y=0;
+    setAge(0);
+    for (i=0;i<8;i++)	//delete nextInfluence
+    {
+	for (j=0;j<(width*height);j++)
+	{   
+                influence[i][j] = 0;
+	}
+    }
+    //delete the cell
+    for (i=0;i<( x+y*width );i++)
+    {
+     cell[i]=-1;
+    }
 }

@@ -354,22 +354,6 @@
             </property>
         </widget>
     </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>buttonStep</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>555</x>
-                <y>470</y>
-                <width>45</width>
-                <height>26</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Step</string>
-        </property>
-    </widget>
     <widget class="QSpinBox">
         <property name="name">
             <cstring>spinMinCreate</cstring>
@@ -1620,6 +1604,35 @@
             </property>
         </widget>
     </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>buttonStep</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>555</x>
+                <y>470</y>
+                <width>45</width>
+                <height>26</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Step</string>
+        </property>
+    </widget>
     <widget class="QPushButton">
         <property name="name">
             <cstring>start_button</cstring>
@@ -1639,27 +1652,33 @@
             <bool>true</bool>
         </property>
     </widget>
-    <widget class="QTextEdit">
+    <widget class="QPushButton">
         <property name="name">
-            <cstring>debugOutput</cstring>
+            <cstring>clear_button</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>646</width>
-                <height>76</height>
+                <x>500</x>
+                <y>440</y>
+                <width>50</width>
+                <height>27</height>
             </rect>
+        </property>
+        <property name="text">
+            <string>Clear</string>
+        </property>
+        <property name="toggleButton">
+            <bool>false</bool>
         </property>
     </widget>
 </widget>
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
-        <header location="local">paintableframe.h</header>
+        <header location="global">paintableframe.h</header>
         <sizehint>
-            <width>500</width>
-            <height>400</height>
+            <width>256</width>
+            <height>192</height>
         </sizehint>
         <container>0</container>
         <sizepolicy>
@@ -1795,6 +1814,12 @@
         <receiver>mainWindow</receiver>
         <slot>startSlot()</slot>
     </connection>
+    <connection>
+        <sender>clear_button</sender>
+        <signal>clicked()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>clearSlot()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>critterType0</tabstop>
@@ -1894,6 +1919,7 @@
 <slots>
     <slot>closeEvent( QCloseEvent * )</slot>
     <slot>fileExit()</slot>
+    <slot>clearSlot()</slot>
     <slot>setMouseDown( int x, int y )</slot>
     <slot>setMouseUp()</slot>
     <slot>setMouseXY( int x, int y )</slot>

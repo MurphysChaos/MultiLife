@@ -38,7 +38,8 @@ public:
     int getWidth();
     int getHeight();
     int getAge() const { return age;}
-    void addAge(int x);
+    void setAge(int x);
+    void clear();
 private:
     int* cell;			// Array of indexes to critterType[]
     int** influence;		// Arrays for tracking influence of each CritterType

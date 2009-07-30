@@ -31,7 +31,7 @@ void mainWindow::init()
     ageLabel2->setGeometry(545, 365, 40, 30); 
     slider = new QSlider(100, 400, 10, 300, QSlider::Horizontal, this);
     slider->setGeometry(500, 400, 100, 30);
-    connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selection
+    connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selectio
     connect( slider, SIGNAL(valueChanged(int)), timer,  SLOT(setSpeed(int)) );
 }
 
@@ -48,7 +48,22 @@ void mainWindow::fileExit()
     framePaint = NULL;
     QDialog::done( 0 );
 }
-
+void mainWindow::clearSlot()
+{
+    if (!running){
+	engine->clear();   //clears the influence of the next generation
+	for (int y=0 ; y< 480 ; y++)
+	{
+	    for(int x=0 ; x<480 ; x++)
+	    {
+		engine->unpopulateCell(x/8 , y/8);
+		emit eraseCell(x/8, y/8);
+		this->paintMode = false;
+	    }		
+	 }
+    repaintFrame();	
+    }
+}
 void mainWindow::setMouseDown( int x, int y )
 {
     int cellX = x / 8;
@@ -296,8 +311,11 @@ void mainWindow::buttonStep_clicked()
 
 void mainWindow::ageSlot()
 {
-    engine->addAge(1);
+    engine->setAge(engine->getAge() + 1);
     ageLabel2->setNum(engine->getAge());
     engine->nextGeneration();
     repaintFrame();
 }
+
+
+
