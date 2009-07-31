@@ -21,7 +21,7 @@ int main( int argc, char ** argv )
     QApplication a( argc, argv );
     mainWindow w;
     w.show();
-    a.setOverrideCursor(QCursor (Qt::PointingHandCursor) );
+    //a.setOverrideCursor(QCursor (Qt::PointingHandCursor) );
     a.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );
     return a.exec();
 }
