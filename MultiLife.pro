@@ -13,12 +13,12 @@ SOURCES	+= main.cpp \
 	paintableframe.cpp \
 	life.cpp \
 	critter_type.cpp \
-	timeFunct.cpp
+	timeFunct.cpp \
+	pen.cpp
 
 FORMS	= mainwindow.ui
 
-IMAGES	= images/PaintableFrame.png \
-	images/penDude.png
+IMAGES	= images/PaintableFrame.png
 
 unix {
   UI_DIR = .ui

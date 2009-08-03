@@ -1,0 +1,35 @@
+﻿How to download via git repository:
+Copy this URL into the terminal git://github.com/MurphysChaos/MultiLife.git
+using the “git clone <URL>”.
+
+Git clone git://github.com/MurphysChaos/MultiLife.git
+
+How to run MultiLife:
+Now that you have your own copy, go into the directory MultiLife with the terminal and make the project by typing in qmake and make after that.
+Once the makefile has finished, execute the program by ./MultiLife
+
+
+How to play the game:
+Anyone familiar with John Conway's game of Life may skip this section. The objective of this game is to raise and maintain all your cell that you write into the board. The original Conway's game focused on a 3x3 matrix where if the center's cell is surrounded by it's own type, it the cells itself will expand. However this is just one example rule for which cells may follow. In MultiLife there are many rules that the user may self define for each cell type to follow. 
+When having Multiple cell types on the board the user may choose to have the different cell types to interact or not by clicking on the two check buttons, Allow Push Out and Observe Non-Similar.
+Allow Push Out: gives the cells the ability to push out other cell types, in a sense to consume other cells different from its own type.
+Observe Non-Similar: will allow the cells to interact with different cell types to determine it's own next move. 
+
+Influence and setting cell types:
+The upper button group is for selecting the cell types. There is a total of 8 different possible cell types that the user may select a color she or he pleases to represent their cell type. The lower button group that consists of a 7x7 matrix is used for each cell type as it's influence on the board. Depending on which pattern you select, the cells will act differently. The center of the 7x7 matrix of button represents the cell itself marked with a 'c' , while the rest of the buttons is it's influence range.
+
+Create and Survive options are for determining the amount of cells that can be created and the amount of cells that will survive. 
+
+Run / Start:
+There are two ways to move to the next generation of cells, or in simpler terms, two ways to move on. The step button will allow one generation to pass to let the user observe and study the behavior of the cells. If the user understands the behavior or does not care, but rather wish to see the outcome in a long term observation then there is the Start button which will constantly run the program to produce new generations in a set period amount of time. The speed of the generation can be increased or decreased according to the users preferences. 
+
+Clear: To clear the board and to reset the generations press the Clear button.
+
+
+Saving and Loading: Currently there is no option to save and load in pre-made maps.
+Resizing the board: Currently there is no option to resize the board. 
+
+
+
+
+

@@ -33,14 +33,24 @@ void mainWindow::init()
     slider->setGeometry(500, 400, 100, 30);
     connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selectio
     connect( slider, SIGNAL(valueChanged(int)), timer,  SLOT(setSpeed(int)) );
+    
 
     //cursor->initialize();
     //framePaint->setCursor(IbeamCursor);
-    
+    /*
     QBitmap  cb = QBitmap(cb_width, cb_height, cb_bits, TRUE);
     QBitmap  cm = QBitmap(cm_width, cm_height, cm_bits, TRUE);
     QCursor cursor = QCursor(cb,32,32);
+    framePaint->setCursor(cursor);  */
+    
+    QImage img(pen_xpm);
+    QPixmap pixmap;
+    pixmap.convertFromImage(img); //loading in image pixmap
+    QCursor cursor = QCursor(pixmap,0,32);
     framePaint->setCursor(cursor);
+    
+     //pixmap.convertFromImage(image, OrderedAlphaDither);
+    
 }
 
 void mainWindow::closeEvent( QCloseEvent * )

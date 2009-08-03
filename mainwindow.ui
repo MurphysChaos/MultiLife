@@ -1675,10 +1675,10 @@
 <customwidgets>
     <customwidget>
         <class>PaintableFrame</class>
-        <header location="global">paintableframe.h</header>
+        <header location="local">paintableframe.h</header>
         <sizehint>
-            <width>256</width>
-            <height>192</height>
+            <width>500</width>
+            <height>400</height>
         </sizehint>
         <container>0</container>
         <sizepolicy>
@@ -1891,6 +1891,7 @@
     <tabstop>critterType5</tabstop>
 </tabstops>
 <includes>
+    <include location="local" impldecl="in implementation">pen.cpp</include>
     <include location="local" impldecl="in declaration">life.h</include>
     <include location="global" impldecl="in declaration">qcolordialog.h</include>
     <include location="global" impldecl="in declaration">iostream</include>
@@ -1901,6 +1902,7 @@
     <include location="global" impldecl="in declaration">qbitmap.h</include>
     <include location="local" impldecl="in declaration">bitmap.h</include>
     <include location="global" impldecl="in declaration">qpixmap.h</include>
+    <include location="global" impldecl="in declaration">qimage.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
@@ -1918,7 +1920,6 @@
     <variable access="private">CritterType* selectedCritterType;</variable>
     <variable access="private">int lastX;</variable>
     <variable access="private">int lastY;</variable>
-    <variable access="private">QPixmap * pm;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
