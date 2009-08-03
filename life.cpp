@@ -182,10 +182,8 @@ void Life::nextGeneration()
                 }
                 // Write next generation
                 ctIndex = cell[index];
-                if (influence[ctIndex][index] >= 
-                    critterType[ctIndex]->getMinSurvive() &&
-                    influence[ctIndex][index] <= 
-                    critterType[ctIndex]->getMaxSurvive())
+                if (svInfl >= critterType[ctIndex]->getMinSurvive() &&
+                    svInfl <= critterType[ctIndex]->getMaxSurvive())
                 {
                     nextCell[index] = ctIndex;
                 } else {
@@ -213,12 +211,11 @@ void Life::nextGeneration()
 	    if (cell[index] == -1 || critterType[cell[index]]->getPushOut())
 	    {
                 nextCell[index] = cell[index];
-for (ctIndex=0;ctIndex<8;ctIndex++)
+                for (ctIndex=0;ctIndex<8;ctIndex++)
                 {
-                    if (influence[ctIndex][index] >= 
-                        critterType[ctIndex]->getMinCreate() && 
-                        influence[ctIndex][index] <= 
-                        critterType[ctIndex]->getMaxCreate())
+                    if (influence[ctIndex][index] >= critterType[ctIndex]->getMinCreate() && 
+                        influence[ctIndex][index] <= critterType[ctIndex]->getMaxCreate() &&
+                        ctIndex != cell[index])
                     {
                         nextCell[index] = ctIndex;
                         
@@ -239,7 +236,6 @@ for (ctIndex=0;ctIndex<8;ctIndex++)
                                 }
                             }
                         }
-                        
                         break;
                     }
                 }
