@@ -31,21 +31,34 @@ Life::Life(int x, int y)
     
     critterType = new CritterType *[8];
     influence = new int *[8];
-    for (i=0;i<8;i++)
+    
+    // Set some default critterTypes.
+    QColor rootColor;
+    rootColor = QColor(0,0,192);
+    critterType[0] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[0]->setObserveCells( 0x00, 0x00, 0x1C, 0x14, 0x1C, 0x00, 0x00 );
+    rootColor = QColor(0,192,0);
+    critterType[1] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[1]->setObserveCells( 0x00, 0x08, 0x08, 0x36, 0x08, 0x08, 0x00 );
+    rootColor = QColor(192,0,0);
+    critterType[2] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[2]->setObserveCells( 0x00, 0x22, 0x14, 0x00, 0x14, 0x22, 0x00 );
+    rootColor = QColor(64,128,192);
+    critterType[3] = new CritterType( rootColor, false, false, 3, 4, 3, 4 );
+    critterType[3]->setObserveCells( 0x00, 0x08, 0x1C, 0x36, 0x1C, 0x08, 0x00 );
+    
+    // Blank remaining critter types and create influence fields
+    for (i=0;i<4;i++)
     {
-	this->critterType[i] = new CritterType();
+        critterType[i+4] = new CritterType();
 	influence[i] = new int[width*height];
+	influence[i+4] = new int[width*height];
 	for (j=0;j<(width*height);j++)
 	{
 	    influence[i][j] = 0;
+	    influence[i+4][j] = 0;
 	}
     }
-    
-    // Set first critterType to Conway-basic type.
-    delete critterType[0];
-    QColor rootColor = QColor(0,0,0);
-    critterType[0] = new CritterType( rootColor, false, false, 2, 3, 3, 3 );
-    critterType[0]->setObserveCells( 0x00, 0x00, 0x1C, 0x14, 0x1C, 0x00, 0x00 );
 }
 
 Life::~Life()

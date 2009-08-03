@@ -273,9 +273,15 @@ void mainWindow::updateTools()
 {
     int i;
     QPushButton* targetButton;
-    targetButton = (QPushButton*) colorGroupBox->selected();
-    targetButton->setPaletteBackgroundColor( selectedCritterType->getColor() );
-    colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    CritterType* targetType;
+    for (i=0;i<8;i++)
+    {
+        targetButton = (QPushButton*) colorGroupBox->find(i);
+        targetType = &this->engine->getCritterType(i);
+        targetButton->setPaletteBackgroundColor( targetType->getColor() );
+    }
+    colorActive->setPaletteBackgroundColor( (colorGroupBox->find(1))->paletteBackgroundColor() );
+    
     for (i=0;i<49;i++)
     {
         targetButton = (QPushButton*) observeCheckGroup->find(i);
