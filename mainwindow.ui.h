@@ -33,7 +33,6 @@ void mainWindow::init()
     slider->setGeometry(500, 400, 100, 30);
     connect(timer, SIGNAL(timeout()), this, SLOT(ageSlot())); //activates ageslot upon selectio
     connect( slider, SIGNAL(valueChanged(int)), timer,  SLOT(setSpeed(int)) );
-    
 
     //cursor->initialize();
     //framePaint->setCursor(IbeamCursor);
@@ -95,7 +94,8 @@ void mainWindow::setMouseDown( int x, int y )
     
     if (x > 0 && x < 480 && y > 0 && y < 480) 
     {
-        if (engine->getCell( cellX, cellY ) == -1)
+        if (engine->getCell( cellX, cellY ) == -1 || 
+            engine->getCell( cellX, cellY ) != colorGroupBox->selectedId() )
         {
             engine->populateCell( cellX, cellY, colorGroupBox->selectedId() );
             emit paintCell( cellX, cellY, selectedCritterType->getColor() );
@@ -173,7 +173,7 @@ void mainWindow::colorGroupBox_clicked( int critter )
 
 void mainWindow::colorActive_clicked() // Show Color Picker
 {
-    QColor newColor = QColorDialog::getColor();
+    QColor newColor = QColorDialog::getColor(colorActive->paletteBackgroundColor());
     selectedCritterType->setColor( newColor );
     colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
     colorGroupBox->selected()->setPaletteBackgroundColor( selectedCritterType->getColor() );
@@ -283,8 +283,13 @@ void mainWindow::updateTools()
 {
     int i;
     QPushButton* targetButton;
-    targetButton = (QPushButton*) colorGroupBox->selected();
-    targetButton->setPaletteBackgroundColor( selectedCritterType->getColor() );
+    CritterType* targetType;
+    for (i=0;i<8;i++)
+    {
+        targetButton = (QPushButton*) colorGroupBox->find(i);
+        targetType = &this->engine->getCritterType(i);
+        targetButton->setPaletteBackgroundColor( targetType->getColor() );
+    }
     colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
     for (i=0;i<49;i++)
     {

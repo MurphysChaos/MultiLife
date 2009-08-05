@@ -1639,6 +1639,19 @@
             <bool>true</bool>
         </property>
     </widget>
+    <widget class="QTextEdit">
+        <property name="name">
+            <cstring>debugOutput</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>5</x>
+                <y>505</y>
+                <width>646</width>
+                <height>76</height>
+            </rect>
+        </property>
+    </widget>
     <widget class="QPushButton">
         <property name="name">
             <cstring>clear_button</cstring>
@@ -1656,19 +1669,6 @@
         </property>
         <property name="toggleButton">
             <bool>false</bool>
-        </property>
-    </widget>
-    <widget class="QTextEdit">
-        <property name="name">
-            <cstring>debugOutput</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>5</x>
-                <y>505</y>
-                <width>646</width>
-                <height>76</height>
-            </rect>
         </property>
     </widget>
 </widget>
@@ -1693,10 +1693,10 @@
         <signal>pressed()</signal>
         <signal>pressed(int,int)</signal>
         <signal>requestRepaint()</signal>
-        <slot access="public" specifier="">slot()</slot>
         <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
         <slot access="public" specifier="">paint(int,int)</slot>
         <slot access="public" specifier="">erase(int,int)</slot>
+        <slot access="public" specifier="">slot()</slot>
         <property type="Int">zoom</property>
     </customwidget>
 </customwidgets>

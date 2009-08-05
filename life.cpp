@@ -27,25 +27,38 @@ Life::Life(int x, int y)
       * where width is a private cell in the Life object. */
     cell = new int[width*height];
     for (i=0;i<(width*height);i++)
-	cell[i] = -1;
+	cell[i] = EMPTY_CELL;
     
     critterType = new CritterType *[8];
     influence = new int *[8];
-    for (i=0;i<8;i++)
+    
+    // Set some default critterTypes.
+    QColor rootColor;
+    rootColor = QColor(0,0,192);
+    critterType[0] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[0]->setObserveCells( 0x00, 0x00, 0x1C, 0x14, 0x1C, 0x00, 0x00 );
+    rootColor = QColor(0,192,0);
+    critterType[1] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[1]->setObserveCells( 0x00, 0x08, 0x08, 0x36, 0x08, 0x08, 0x00 );
+    rootColor = QColor(192,0,0);
+    critterType[2] = new CritterType( rootColor, true, true, 2, 3, 3, 3 );
+    critterType[2]->setObserveCells( 0x00, 0x22, 0x14, 0x00, 0x14, 0x22, 0x00 );
+    rootColor = QColor(64,128,192);
+    critterType[3] = new CritterType( rootColor, false, false, 3, 4, 3, 4 );
+    critterType[3]->setObserveCells( 0x00, 0x08, 0x1C, 0x36, 0x1C, 0x08, 0x00 );
+    
+    // Blank remaining critter types and create influence fields
+    for (i=0;i<4;i++)
     {
-	this->critterType[i] = new CritterType();
+        critterType[i+4] = new CritterType();
 	influence[i] = new int[width*height];
+	influence[i+4] = new int[width*height];
 	for (j=0;j<(width*height);j++)
 	{
 	    influence[i][j] = 0;
+	    influence[i+4][j] = 0;
 	}
     }
-    
-    // Set first critterType to Conway-basic type.
-    delete critterType[0];
-    QColor rootColor = QColor(0,0,0);
-    critterType[0] = new CritterType( rootColor, false, false, 2, 3, 3, 3 );
-    critterType[0]->setObserveCells( 0x00, 0x00, 0x1C, 0x14, 0x1C, 0x00, 0x00 );
 }
 
 Life::~Life()
@@ -124,26 +137,33 @@ void Life::unpopulateCell( int x, int y )
 		}
 	    }
 	}
-        cell[ x+y*width ] = -1;
+        cell[ x+y*width ] = EMPTY_CELL;
     }
 }
 
 void Life::nextGeneration()
 {
-    // ctIndex := index of critterType; svInfl := influence for survival
-    int i, j, x, y, index, ctIndex, svInfl;	
-    int offX, offY, lookX, lookY;
+    // ctIndex := index of critterType; tInfl := influence for survival
+    int i, j, x, y, index, ctIndex, tInfl;	
     
-    int* nextCell = new int[height*width];
-    int** nextInfluence = new int *[8];
+    int* oldCell = cell;
+    int** oldInfluence = influence;    
     
-    // Duplicate Influence
+    // Create blank cell array
+    cell = new int[height*width];
+    for (i=0;i<(width*height);i++)
+    {
+        cell[i] = EMPTY_CELL;
+    }
+    
+    // Create blank influence array
+    influence = new int *[8];
     for (i=0;i<8;i++)
     {
-	nextInfluence[i] = new int[width*height];
+	influence[i] = new int[width*height];
 	for (j=0;j<(width*height);j++)
-	{   
-            nextInfluence[i][j] = influence[i][j];
+	{
+            influence[i][j] = 0;
 	}
     }
     
@@ -154,90 +174,47 @@ void Life::nextGeneration()
 	{
 	    index = x + y * width;
             // Survive Phase
-            if (cell[index] != -1)
+            if (oldCell[index] != EMPTY_CELL)
             {
                 // Get survival-based influence
-                if (critterType[cell[index]]->getObserveOthers())
+                if (critterType[oldCell[index]]->getObserveOthers())
                 {
-                    svInfl = 0;
+                    tInfl = 0;
                     for (ctIndex=0;ctIndex<8;ctIndex++)
                     {
-                        svInfl += influence[ctIndex][index];
+                        tInfl += oldInfluence[ctIndex][index];
                     }
                 } else {
-                    svInfl = influence[cell[index]][index];
+                    tInfl = oldInfluence[oldCell[index]][index];
                 }
                 // Write next generation
-                ctIndex = cell[index];
-                if (influence[ctIndex][index] >= 
-                    critterType[ctIndex]->getMinSurvive() &&
-                    influence[ctIndex][index] <= 
-                    critterType[ctIndex]->getMaxSurvive())
+                ctIndex = oldCell[index];
+                if (tInfl >= critterType[ctIndex]->getMinSurvive() &&
+                    tInfl <= critterType[ctIndex]->getMaxSurvive())
                 {
-                    nextCell[index] = ctIndex;
-                } else {
-                    nextCell[index] = -1;
-                    
-                    // Update influence
-                    for (offY=-3;offY<=3;offY++)
-                    {
-                        for (offX=-3;offX<=3;offX++)
-                        {
-                            // Avoid accessing invalid array elements
-                            lookX = x + offX;
-                            lookY = y + offY;
-                            if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
-                            {
-                                nextInfluence[ctIndex][ lookX + lookY * width ] -= 
-                                        critterType[ctIndex]->getObserveCell( offX, offY ) ?
-                                        1 : 0;
-                            }
-                        }
-                    }
+                    populateCell(x, y, ctIndex);
                 }
             }
-	    // Create Phase -- only if empty or pushOut allowed
-	    if (cell[index] == -1 || critterType[cell[index]]->getPushOut())
-	    {
-                nextCell[index] = cell[index];
-for (ctIndex=0;ctIndex<8;ctIndex++)
+	    // Create Phase
+            if (oldCell[index] == EMPTY_CELL || critterType[oldCell[index]]->getPushOut())
+            {
+                for (ctIndex=0;ctIndex<8;ctIndex++)                    
                 {
-                    if (influence[ctIndex][index] >= 
-                        critterType[ctIndex]->getMinCreate() && 
-                        influence[ctIndex][index] <= 
-                        critterType[ctIndex]->getMaxCreate())
+                    tInfl = oldInfluence[ctIndex][index];
+                    if (tInfl >= critterType[ctIndex]->getMinCreate() && 
+                        tInfl <= critterType[ctIndex]->getMaxCreate() &&
+                        ctIndex != oldCell[index])
                     {
-                        nextCell[index] = ctIndex;
-                        
-                        // Update influence
-                        for (offY=-3;offY<=3;offY++)
-                        {
-                            for (offX=-3;offX<=3;offX++)
-                            {
-                                // Avoid accessing invalid array elements
-                                lookX = x + offX;
-                                lookY = y + offY;
-                                if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
-                                {
-                                    if (critterType[ctIndex]->getObserveCell( offX, offY ))
-                                    {
-                                        nextInfluence[ctIndex][ lookX + lookY * width ] += 1;
-                                    }
-                                }
-                            }
-                        }
-                        
+                        populateCell(x, y, ctIndex);
                         break;
                     }
                 }
-	    }
-	}
+            }
+        }
     }
     
-    delete [] cell;
-    delete [] influence;
-    cell = nextCell;
-    influence = nextInfluence;
+    delete [] oldCell;
+    delete [] oldInfluence;
 }
 
 int Life::getWidth()
@@ -266,6 +243,6 @@ void Life::clear(){
     //delete the cell
     for (i=0;i<( x+y*width );i++)
     {
-     cell[i]=-1;
+     cell[i] = EMPTY_CELL;
     }
 }
