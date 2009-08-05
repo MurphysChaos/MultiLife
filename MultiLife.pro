@@ -13,7 +13,8 @@ SOURCES	+= main.cpp \
 	paintableframe.cpp \
 	life.cpp \
 	critter_type.cpp \
-	timeFunct.cpp
+	timeFunct.cpp \
+	pen.cpp
 
 FORMS	= mainwindow.ui
 
