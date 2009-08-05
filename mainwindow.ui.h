@@ -291,7 +291,6 @@ void mainWindow::updateTools()
         targetButton->setPaletteBackgroundColor( targetType->getColor() );
     }
     colorActive->setPaletteBackgroundColor( selectedCritterType->getColor() );
-    
     for (i=0;i<49;i++)
     {
         targetButton = (QPushButton*) observeCheckGroup->find(i);

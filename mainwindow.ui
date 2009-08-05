@@ -1920,7 +1920,6 @@
     <variable access="private">CritterType* selectedCritterType;</variable>
     <variable access="private">int lastX;</variable>
     <variable access="private">int lastY;</variable>
-    <variable access="private">QPixmap * pm;</variable>
 </variables>
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
