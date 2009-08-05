@@ -47,6 +47,7 @@ private:
     int width;			// Width of array
     int height;			// Height of array
     int age;
+    enum { EMPTY_CELL = -1 };
 };
 
 #endif
