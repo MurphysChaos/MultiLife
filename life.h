@@ -40,6 +40,7 @@ public:
     int getAge() const { return age;}
     void setAge(int x);
     void clear();
+    void rebuildInfluence( int critter );
 private:
     int* cell;			// Array of indexes to critterType[]
     int** influence;		// Arrays for tracking influence of each CritterType

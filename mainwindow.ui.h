@@ -203,6 +203,8 @@ void mainWindow::observeCheckGroup_clicked( int buttonClicked )
         targetButton->setPaletteBackgroundColor(this->checkOff);
     }
     
+    engine->rebuildInfluence(colorGroupBox->selectedId());
+    
     QString debugAppend;
     debugAppend.sprintf("SELECTED: observeCheckGroup[%d]",buttonClicked);
     debugOutput->append( debugAppend );

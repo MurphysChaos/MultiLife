@@ -230,6 +230,7 @@ int Life::getHeight()
 void Life::setAge(int x){
   age = x;
 }
+
 void Life::clear(){
     int i,j,x,y=0;
     setAge(0);
@@ -244,5 +245,45 @@ void Life::clear(){
     for (i=0;i<( x+y*width );i++)
     {
      cell[i] = EMPTY_CELL;
+    }
+}
+
+void Life::rebuildInfluence( int critter )
+{
+    int i, x, y, offX, offY, lookX, lookY;
+    bool observeValue;
+    
+    // Clear influence
+    for (i=0;i<(width*height);i++) 
+    {
+        influence[critter][i] = 0;
+    }
+    
+    // Primary loop
+    for (y=0;y<height;y++)
+    {
+        for (x=0;x<width;x++)
+        {
+            if (cell[x+y*width]==critter) {
+                // Manipulate influence data
+                for (offY=-3;offY<=3;offY++)
+                {
+                    for (offX=-3;offX<=3;offX++)
+                    {
+                        // Avoid accessing invalid array elements
+                        lookX = x + offX;
+                        lookY = y + offY;
+                        if (lookX >= 0 && lookX < width && lookY >= 0 && lookY < height) 
+                        {
+                            observeValue = critterType[critter]->getObserveCell( offX, offY );
+                            if (observeValue)
+                            {
+                                influence[critter][ lookX + lookY * width ] += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
