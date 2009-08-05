@@ -42,6 +42,7 @@ void mainWindow::init()
     QCursor cursor = QCursor(cb,32,32);
     framePaint->setCursor(cursor);  */
     
+    
     QImage img(pen_xpm);
     QPixmap pixmap;
     pixmap.convertFromImage(img); //loading in image pixmap
