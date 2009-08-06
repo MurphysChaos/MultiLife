@@ -45,6 +45,7 @@ public slots:
     void paint( int x, int y ); // Paints black
     void paint( int x, int y, QColor& color );
     void erase( int x, int y ); // Unpaints cell
+    void erase(); // Unpaints entire buffer
 signals:
     void pressed();
     void pressed( int x, int y );

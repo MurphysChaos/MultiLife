@@ -20,16 +20,8 @@
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
 {
-    int i,j;
-    
     buffer = QPixmap::QPixmap( IMAGE_WIDTH, IMAGE_HEIGHT );
-    buffer.fill( colorGroup().midlight() );
-    QPainter bufferPainter(&buffer);
-    
-    QBrush brush( colorGroup().midlight() );
-    for (j=0;j<480;j+=8)
-        for (i=0;i<480;i+=8)
-            qDrawShadePanel( &bufferPainter, i, j, 8, 8, colorGroup(), true, 1, 0 );
+    this->erase();
 }
 
 PaintableFrame::~PaintableFrame()
@@ -67,6 +59,18 @@ void PaintableFrame::erase( int x, int y )
     QColor pen = QColor::QColor( colorGroup().midlight() );
     bufferPainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
     framePainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
+}
+
+void PaintableFrame::erase()
+{
+    int i,j;
+    QPainter bufferPainter(&buffer);
+    buffer.fill( colorGroup().midlight() );
+    
+    QBrush brush( colorGroup().midlight() );
+    for (j=0;j<480;j+=8)
+        for (i=0;i<480;i+=8)
+            qDrawShadePanel( &bufferPainter, i, j, 8, 8, colorGroup(), true, 1, 0 );
 }
 
 void PaintableFrame::paintEvent( QPaintEvent * e )

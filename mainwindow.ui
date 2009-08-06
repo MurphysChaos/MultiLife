@@ -1695,6 +1695,7 @@
         <signal>requestRepaint()</signal>
         <slot access="public" specifier="">paint(int,int,QColor&amp;)</slot>
         <slot access="public" specifier="">paint(int,int)</slot>
+        <slot access="public" specifier="">erase()</slot>
         <slot access="public" specifier="">erase(int,int)</slot>
         <slot access="public" specifier="">slot()</slot>
         <property type="Int">zoom</property>
@@ -1820,6 +1821,12 @@
         <receiver>mainWindow</receiver>
         <slot>clearSlot()</slot>
     </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>eraseFrame()</signal>
+        <receiver>framePaint</receiver>
+        <slot>erase()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>critterType0</tabstop>
@@ -1924,6 +1931,7 @@
 <signals>
     <signal>paintCell( int, int, QColor&amp; )</signal>
     <signal>eraseCell( int, int )</signal>
+    <signal>eraseFrame()</signal>
 </signals>
 <slots>
     <slot>closeEvent( QCloseEvent * )</slot>

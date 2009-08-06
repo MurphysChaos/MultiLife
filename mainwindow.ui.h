@@ -61,18 +61,11 @@ void mainWindow::fileExit()
 void mainWindow::clearSlot()
 {
     if (!running){
-	engine->clear();   //clears the influence of the next generation
-	for (int y=0 ; y< 480 ; y++)
-	{
-	    for(int x=0 ; x<480 ; x++)
-	    {
-		engine->unpopulateCell(x/8 , y/8);
-		emit eraseCell(x/8, y/8);
-		this->paintMode = false;
-	    }		
-	 }
-    ageLabel2->setNum(engine->getAge());
-    repaintFrame();	
+        delete this->engine;
+        this->engine = new Life(60, 60);
+        ageLabel2->setNum(engine->getAge());
+        emit eraseFrame();
+        framePaint->repaint();
     }
 }
 void mainWindow::setMouseDown( int x, int y )
@@ -129,7 +122,7 @@ void mainWindow::repaintFrame()
     int width = engine->getWidth(), height = engine->getHeight();
     CritterType* targetCritter;
     
-    framePaint->repaint();
+    emit eraseFrame();
     
     for (cellY=0;cellY<height;cellY++)
     {
@@ -139,11 +132,11 @@ void mainWindow::repaintFrame()
             {
                 targetCritter = &this->engine->getCritterType( cellX, cellY );
                 emit paintCell( cellX, cellY, targetCritter->getColor() );
-            } else {
-                emit eraseCell( cellX, cellY );
             }
         }
     }
+    
+    framePaint->repaint();    
 }
 
 void mainWindow::colorGroupBox_clicked( int critter )
@@ -308,9 +301,6 @@ void mainWindow::paintEvent( QPaintEvent *e )
     repaintFrame();
 }
 
-#endif
-
-
 void mainWindow::startSlot()
 {
     running = !running;
@@ -338,5 +328,4 @@ void mainWindow::ageSlot()
     repaintFrame();
 }
 
-
-
+#endif
