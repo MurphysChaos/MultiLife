@@ -21,6 +21,7 @@
 #include <qwidget.h>
 #include <qevent.h>
 #include <qpainter.h>
+#include <qpixmap.h>
 #include <qdrawutil.h>
 #include <iostream>
 
@@ -30,7 +31,11 @@ class PaintableFrame : public QWidget
 public:
     PaintableFrame( QWidget *parent = 0, const char *name = 0 );
     ~PaintableFrame();
-    QPainter *painter;
+private:
+    //QPainter framePainter;
+    //QPainter bufferPainter;
+    QPixmap buffer;
+    enum { IMAGE_WIDTH = 481, IMAGE_HEIGHT = 481 };
 protected:
     void paintEvent( QPaintEvent *e );
     void mousePressEvent( QMouseEvent *e );

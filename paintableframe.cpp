@@ -20,39 +20,59 @@
 PaintableFrame::PaintableFrame( QWidget *parent, const char *name )
     : QWidget(parent, name)
 {
-    painter = new QPainter(this);
+    int i,j;
+    
+    buffer = QPixmap::QPixmap( IMAGE_WIDTH, IMAGE_HEIGHT );
+    buffer.fill( colorGroup().midlight() );
+    QPainter bufferPainter(&buffer);
+    
+    QBrush brush( colorGroup().midlight() );
+    for (j=0;j<480;j+=8)
+        for (i=0;i<480;i+=8)
+            qDrawShadePanel( &bufferPainter, i, j, 8, 8, colorGroup(), true, 1, 0 );
 }
 
 PaintableFrame::~PaintableFrame()
 {
-    delete painter;
-    painter = NULL;
+    /*
+    delete framePainter;
+    delete bufferPainter;
+    delete buffer;
+    bufferPainter = NULL;
+    */
 }
 
 void PaintableFrame::paint( int x, int y )
 {
+    QPainter bufferPainter(&buffer);
+    QPainter framePainter(this);
     QColor pen = QColor::QColor( Qt::black );
-    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
+    bufferPainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
+    framePainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::paint( int x, int y, QColor& color )
 {
+    QPainter bufferPainter(&buffer);
+    QPainter framePainter(this);
     QColor pen = QColor::QColor( color );
-    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
+    bufferPainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
+    framePainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::erase( int x, int y )
 {
+    QPainter bufferPainter(&buffer);
+    QPainter framePainter(this);
     QColor pen = QColor::QColor( colorGroup().midlight() );
-    painter->fillRect( x*8+1, y*8+1, 6, 6, pen );
+    bufferPainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
+    framePainter.fillRect( x*8+1, y*8+1, 6, 6, pen );
 }
 
 void PaintableFrame::paintEvent( QPaintEvent * e )
 {
-    QBrush brush( colorGroup().midlight() );
-    for (int j=0;j<480;j+=8)
-        for (int i=0;i<480;i+=8)
-            qDrawShadePanel( painter, i, j, 8, 8, colorGroup(), true, 1, 0 );
+    QPainter framePainter(this);
+    framePainter.drawPixmap(0, 0, buffer);
 }
 
 void PaintableFrame::mousePressEvent( QMouseEvent * e )

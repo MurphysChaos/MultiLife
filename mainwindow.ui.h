@@ -139,6 +139,8 @@ void mainWindow::repaintFrame()
             {
                 targetCritter = &this->engine->getCritterType( cellX, cellY );
                 emit paintCell( cellX, cellY, targetCritter->getColor() );
+            } else {
+                emit eraseCell( cellX, cellY );
             }
         }
     }
